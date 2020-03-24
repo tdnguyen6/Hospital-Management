@@ -1,14 +1,14 @@
 <img src="http://drive.google.com/uc?export=view&id=119AoPqLPWXO6tVAFQwhiNSAjlDnMwSND" alt="Topic" width="100%">
 
 
-<a href="http://drive.google.com/uc?export=view&id=1yCviMSwGiLKcg2RYeei6TSrqX27EE2e6&embedded=true">Assignment Instructions</a>
+<h2><a href="http://drive.google.com/uc?export=view&id=1yCviMSwGiLKcg2RYeei6TSrqX27EE2e6&embedded=true">Assignment Instructions</a></h2>
 
 
-### Deadline: May 2<sup>th</sup> 2020
+#### Deadline: May 2<sup>th</sup> 2020
 
 
 ### Do not upload binary assets (images, database, executables, ...) directly to this github repository.
-#### Instead upload assets [here][drive upload link] and check out the drive folder [here][drive open link].
+### Instead upload assets [here][drive upload link] and check out the drive folder [here][drive open link].
 
 
 
