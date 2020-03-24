@@ -1,0 +1,62 @@
+* Patient:
+- Patient ID (unique)
+- Personal detail:
+	+ Name
+	+ Gender
+	+ Birthday
+	+ Gender
+	+ Phone number
+- Disease
+- Treatment
+* Doctor: (1 doctor - more than 1 patient)
+- Doctor ID (unique)
+* Hospital:
+- Room numbers
+- Room for Operation Theaters abd ICU
+- Nurses, ward boys (for maintenance of hospital and for patient take care)
+* Bill:
+- The number of days
+- Treatment
+
+1. Designing an ERD conceptual schema
+	- Accurately captures as much of the semantics of the application as possible
+	- All relevant entities, attributes, relationships, cardinalities,
+	  speacialization and generalization hierarchies.
+--> one and only one relation ship
+https://www.smartdraw.com/entity-relationship-diagram/#ERDSymbols
+https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning
+https://www.conceptdraw.com/How-To-Guide/picture/Notation-Symbols-ERD.png
+2. ERD to relational database schema conversion
+	- Underline the primary keys for each relations
+	- Specify domains for each (relational) attributes
+	- Indicate all reasonable referential integrity constraints in italics 
+	  (referential constraint)
+	* Schema: Students(sid: string, name: string, login: string, age: integer, gpa: real).
+	* Instance: fill value
+		+ Rows: cardinality
+		+ Fields: degree or arity
+	- Justify design
+	- Advantages from using ERD and disadvantages
+	- Indicate all reasonable referential integrity
+	  constraints in italics
+	* Referential Integrity is set of constraints applied to foreign key which prevents 
+	  entering a row in child table (where you have foreign key) 
+	  for which you don't have any corresponding row in parent table
+	* Referential Integrity prevents your table from having  
+	  incorrect or incomplete relationship
+	* If you have two tables Order and Customer where Customer is parent table with 
+	  primary key customer_id and Order is child table with foreign key customer_id. 
+	  Since as per business rules you can not have an Order without a Customer and 
+	  this business rule can be implemented using referential integrity in SQL on relational database
+https://beginner-sql-tutorial.com/sql-integrity-constraints.htm
+3. Creating database
+	- Using SQL statements in the MySQL command line tool or SQL Server
+	- Primary keys and foreign keys must be implemented
+	- Choose datatype
+	- Include the database schema diagram and tables description in your report
+4. Run queries in Java
+(access (select) and modify (insert, update, or delete) data stored on the database server)
+
+
+
+
