@@ -1,6 +1,4 @@
-![topic image][topic]
-
-
+  <img src="http://drive.google.com/uc?export=view&id=119AoPqLPWXO6tVAFQwhiNSAjlDnMwSND" alt="Topic" width="100%">
 
 
 ### The Assignment instructions:
