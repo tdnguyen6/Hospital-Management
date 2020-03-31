@@ -31,6 +31,8 @@ fabric.properties
 **/build/
 **/gradle
 
+**/*.iml
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
