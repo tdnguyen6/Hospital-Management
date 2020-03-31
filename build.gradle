@@ -18,3 +18,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.13'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 }
+
+def timestamp = new Date().format('HH-mm_dd-MM')
+
+gretty {
+    httpPort = 6996
+    contextPath = '/'
+    logDir = 'logs/'
+    logFileName = timestamp
+}
