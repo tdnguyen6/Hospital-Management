@@ -1,0 +1,27 @@
+[
+  {
+    "did": 1,
+    "dname": "sore throat",
+    "medPrice": 1000
+  },
+  {
+    "did": 2,
+    "dname": "fever",
+    "medPrice": 2000
+  },
+  {
+    "did": 3,
+    "dname": "stuffy",
+    "medPrice": 3000
+  },
+  {
+    "did": 4,
+    "dname": "cough",
+    "medPrice": 4000
+  },
+  {
+    "did": 5,
+    "dname": "headache",
+    "medPrice": 5000
+  }
+]
