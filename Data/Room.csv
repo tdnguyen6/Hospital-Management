@@ -1,0 +1,51 @@
+number,type,msid,noOfStaffs
+1,ER,1,7
+2,ER,2,3
+3,ER,3,8
+4,ER,4,6
+5,ER,5,4
+6,ER,6,1
+7,ER,7,7
+8,ER,8,3
+9,ER,9,2
+10,ER,10,7
+11,ER,11,1
+12,ER,12,6
+13,ER,13,2
+14,ER,14,8
+15,ER,15,6
+16,ER,16,8
+17,ER,17,6
+18,ER,18,1
+19,ER,19,7
+20,ER,20,7
+1,Operating Theater,21,5
+2,Operating Theater,22,3
+3,Operating Theater,23,3
+4,Operating Theater,24,1
+5,Operating Theater,25,3
+6,Operating Theater,26,10
+7,Operating Theater,27,2
+8,Operating Theater,28,8
+9,Operating Theater,29,9
+10,Operating Theater,30,1
+11,Operating Theater,31,10
+12,Operating Theater,32,7
+13,Operating Theater,33,8
+14,Operating Theater,34,2
+15,Operating Theater,35,1
+16,Operating Theater,36,8
+17,Operating Theater,37,2
+18,Operating Theater,38,2
+19,Operating Theater,39,7
+20,Operating Theater,40,9
+1,ICU,41,4
+2,ICU,42,1
+3,ICU,43,7
+4,ICU,44,6
+5,ICU,45,3
+6,ICU,46,3
+7,ICU,47,2
+8,ICU,48,6
+9,ICU,49,10
+10,ICU,50,6

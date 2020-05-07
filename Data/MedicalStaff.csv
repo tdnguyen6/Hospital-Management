@@ -1,0 +1,51 @@
+stid,stssn,stname,stgender,stdob,age,phone,role,yearOfExp,Specialty,assignedroomNo,assignedroomType
+1,774-23-0561,Cass Whordley,Male,10/1/1982,37.00,(447) 9458136,Nurse,4,Anaesthetics,1,ER
+2,339-58-5826,Stanford Simmonds,Male,11/3/1984,35.00,(380) 2544076,Doctor,4,Anaesthetics,2,ER
+3,301-22-5366,Jeromy Biggerdike,Male,9/1/1982,37.00,(283) 4414619,Doctor,2,Neurology,3,ER
+4,511-98-4308,Benyamin Teggin,Male,11/29/1980,39.00,(806) 4609609,Nurse,5,Cardiology,4,ER
+5,514-59-4529,Cathryn Goodson,Female,10/30/1986,33.00,(379) 1170435,Nurse,5,Anaesthetics,5,ER
+6,765-02-0978,Jessalyn Panner,Female,9/12/1990,29.00,(481) 8691844,Wardboy,3,Cardiology,6,ER
+7,808-86-0481,Shelley Marlow,Female,5/6/1969,51.00,(337) 8165907,Doctor,4,Cardiology,7,ER
+8,267-96-2866,Colene Well,Female,6/25/1969,50.00,(558) 6721554,Nurse,2,Neurology,8,ER
+9,385-38-1728,Kienan Skate,Male,2/2/1999,21.00,(898) 9965570,Doctor,3,Ear nose and throat,9,ER
+10,131-09-5075,Lyndsey Dumbrill,Female,8/10/1983,36.00,(168) 9203304,Wardboy,4,Anaesthetics,10,ER
+11,119-93-0249,Linet Aneley,Female,11/6/1968,51.00,(551) 4970563,Doctor,2,Neurology,11,ER
+12,835-49-7938,Waring Wetherick,Male,12/24/1967,52.00,(310) 8519888,Wardboy,5,Ear nose and throat,12,ER
+13,816-48-6801,Goddart Samson,Male,2/17/1982,38.00,(368) 2942169,Doctor,3,Ear nose and throat,13,ER
+14,159-29-8926,Jamill Hawkin,Male,4/6/1986,34.00,(272) 6509093,Nurse,5,Neurology,14,ER
+15,628-57-8697,Babbette Neath,Female,11/11/1987,32.00,(624) 9089085,Nurse,2,Cardiology,15,ER
+16,124-85-4677,Valera Melson,Female,12/8/1996,23.00,(311) 1575759,Doctor,3,Neurology,16,ER
+17,508-81-4612,Charla Josilowski,Female,12/12/1994,25.00,(355) 3692545,Nurse,4,Anaesthetics,17,ER
+18,329-10-0325,Sadie Dranfield,Female,6/18/1969,50.00,(727) 8887725,Nurse,5,Anaesthetics,18,ER
+19,554-50-9029,Joannes Collopy,Female,5/19/1981,38.00,(519) 5784679,Wardboy,3,Ear nose and throat,19,ER
+20,647-97-2207,Lina Leagas,Female,10/12/1976,43.00,(616) 1554219,Doctor,3,Neurology,20,ER
+21,469-40-7181,Cristina Eykelhof,Female,1/28/1984,36.00,(386) 5916469,Wardboy,2,Anaesthetics,1,Operating Theater
+22,408-83-0235,Brittani Paggitt,Female,9/21/1992,27.00,(825) 9383238,Nurse,3,Anaesthetics,2,Operating Theater
+23,566-39-3704,Stefania Jefford,Female,9/15/1968,51.00,(837) 4775473,Wardboy,5,Neurology,3,Operating Theater
+24,342-65-2710,Collette Oughton,Female,6/9/1969,50.00,(177) 7659675,Wardboy,2,Anaesthetics,4,Operating Theater
+25,309-13-2919,Corey Ardy,Female,12/12/1995,24.00,(930) 3596751,Doctor,5,Neurology,5,Operating Theater
+26,422-29-3187,Imogen Daftor,Female,9/24/1960,59.00,(182) 8954018,Doctor,5,Cardiology,6,Operating Theater
+27,266-98-0317,Pietro Hydes,Male,6/30/1968,51.00,(547) 5470837,Wardboy,4,Anaesthetics,7,Operating Theater
+28,894-04-5441,Milli Elsley,Female,10/22/1982,37.00,(724) 8780113,Doctor,2,Anaesthetics,8,Operating Theater
+29,460-12-5995,Colas Dougary,Male,6/12/1979,40.00,(377) 2484633,Nurse,2,Ear nose and throat,9,Operating Theater
+30,596-78-3745,Oates Shapter,Male,11/5/1999,20.00,(129) 2151626,Nurse,3,Cardiology,10,Operating Theater
+31,812-21-9978,Leah Ambrogini,Female,2/3/1961,59.00,(876) 6556962,Wardboy,5,Cardiology,11,Operating Theater
+32,324-29-7148,Amandy Pickavant,Female,12/26/1969,50.00,(463) 7879414,Wardboy,5,Ear nose and throat,12,Operating Theater
+33,126-50-6277,Emmit Brackpool,Male,11/18/1978,41.00,(491) 6682384,Nurse,5,Cardiology,13,Operating Theater
+34,236-27-4359,Ellsworth Culwen,Male,9/16/1972,47.00,(821) 8788823,Nurse,5,Anaesthetics,14,Operating Theater
+35,890-83-2019,Corey Broggio,Male,8/30/1971,48.00,(985) 2399276,Nurse,4,Neurology,15,Operating Theater
+36,536-93-6414,Dorita Marthen,Female,3/1/1976,44.00,(405) 7245781,Nurse,2,Ear nose and throat,16,Operating Theater
+37,767-41-3677,Hinda Statter,Female,6/22/1990,29.00,(157) 9830531,Wardboy,4,Neurology,17,Operating Theater
+38,336-38-9441,Sallyanne Schole,Female,3/12/1969,51.00,(654) 5187292,Doctor,4,Cardiology,18,Operating Theater
+39,520-64-5863,Fancie Hamson,Female,3/19/1983,37.00,(323) 1118547,Wardboy,4,Ear nose and throat,19,Operating Theater
+40,707-15-9007,Tani Peepall,Female,10/25/1975,44.00,(462) 5771480,Nurse,4,Cardiology,20,Operating Theater
+41,392-31-1706,Lemmy Oxtiby,Male,8/21/1985,34.00,(196) 8485643,Doctor,4,Anaesthetics,1,ICU
+42,483-82-3682,Abbott Reddish,Male,8/15/1964,55.00,(608) 6167614,Doctor,2,Neurology,2,ICU
+43,446-42-9849,Myranda Wyrall,Female,4/26/1985,35.00,(975) 3138752,Nurse,2,Anaesthetics,3,ICU
+44,601-89-6032,Giovanni Inde,Male,12/29/1963,56.00,(310) 7328763,Nurse,3,Cardiology,4,ICU
+45,416-42-0702,Wynn Pietruszewicz,Male,6/13/1984,35.00,(970) 3457087,Wardboy,2,Neurology,5,ICU
+46,376-74-5751,Rodie Howle,Female,4/10/1976,44.00,(201) 2897041,Wardboy,4,Cardiology,6,ICU
+47,224-05-5519,Muriel Moncur,Female,1/27/1987,33.00,(166) 1130103,Nurse,5,Cardiology,7,ICU
+48,411-94-8339,Padget Wyman,Male,7/4/1974,45.00,(417) 8303139,Doctor,5,Anaesthetics,8,ICU
+49,457-11-7868,Norean Croke,Female,10/23/1976,43.00,(845) 7611286,Doctor,5,Cardiology,9,ICU
+50,574-52-8381,Gerhardine Mouget,Female,4/6/1997,23.00,(693) 2085219,Nurse,5,Anaesthetics,10,ICU

@@ -1,0 +1,21 @@
+msid,msname,msprice,noOfPatients,noOfRooms
+1,clinical evaluation,100,2,5
+2,endoscopic management of bleeding,200,16,2
+3,endoscopy,300,3,5
+4,endoscopic ultrasound,400,14,2
+5,enhanced urinalysis,500,6,2
+6,xploratory laparotomy,600,15,2
+7,flow cytometry,700,8,4
+8,Fluorodeoxyglucose positron emission,800,14,3
+9,gastric decontamination,900,2,5
+10,haemodialysis,1000,6,3
+11,radiographical,1100,9,3
+12,radiotherapy,1200,13,4
+13,rapid antigen detection test,1300,15,5
+14,direct antiglobulin (Coombs') test,1400,17,2
+15,Faecal occult blood testing,1500,15,1
+16,full blood count (FBC),1600,5,4
+17,Gamma Phage Assay,1700,11,1
+18,LFT LFTs (liver function tests),1800,11,3
+19,liver function tests,1900,13,4
+20,monospot test,2000,2,5
