@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
 	<meta charset="utf-8">
 	<title>ADD PATIENT</title>
+	<style>
+		body {
+			font-family: arial, sans-serif;
+		}
+		fieldset {
+			border: 0px;
+		}
+		fieldset > div {
+			margin-bottom: 30px;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		label span {
+			color: red;
+		}
+		input {
+			padding: 10px;
+			width: 200px;
+		}
+		input:valid {
+			border: 2px solid green;
+		}
+		input:invalid {
+			border: 2px solid red;
+		}
+		select {
+			border-radius: 0px;
+			color: black;
+			-webkit-appearance: none;
+			padding: 10px 10px;
+			width: 224px;
+		}
+		button {
+		  background: green;
+		  border: 0;
+		  color: white;
+			font-weight: bold;
+		  width: 112px;
+		  padding: 10px;
+		  text-transform: uppercase;
+		}
+	</style>
 </head>
-
-
-
 <body>
-
-	<form action="add-patient" method="get">
-          ssn     : <input type="text" name="ssn" id="ssn"><br><br>
-          phoneno : <input type="text" name="phoneno" id="phoneno"><br><br>
-          dob     : <input type="text" name="dob" id ="dob"><br><br>
-          gender  : <input type="text" name="gender" id ="gender"><br><br>
-          name    : <input type="text" name="name" id ="name"><br><br>
-          <!--Result: <span id="result"></span>-->
-          <br>
-    </form>
-
-	<button id="add-btn">ADD</button><br><br>
-	<button id="back">BACK</button><br><br>
-	
-	<script type="text/javascript">	
+	<script type="text/javascript">
 		var addBtn = document.getElementById('add-btn');
 		addBtn.addEventListener('click', addItem);
-		
+
 		var Patient = {
 			ssn,
 			phoneno,
@@ -37,12 +62,12 @@
 		};
 
 		function addItem() {
-        	var ssn = document.getElementById('ssn'); 
-        	var phoneno = document.getElementById('phoneno'); 
-        	var dob = document.getElementById('dob'); 
-        	var gender = document.getElementById('gender'); 
-        	var name = document.getElementById('name'); 
-			
+    	var ssn = document.getElementById('ssn');
+    	var phoneno = document.getElementById('phoneno');
+    	var dob = document.getElementById('dob');
+    	var gender = document.getElementById('gender');
+	   	var name = document.getElementById('name');
+
 			var newSsn = ssn.value;
 			var newPhoneno = phoneno.value;
 			var newDob = dob.value;
@@ -58,9 +83,41 @@
 			var patientJSON = JSON.stringify(Patient);
 			//document.getElementById("result").innerHTML = patientJSON;
 		};
+
 		document.getElementById("back").onclick = function () {
         	location.href = "index.html";
-   		};
+   	};
 	</script>
+
+	<form action="url-to-send-form-data" method="post">
+		<fieldset>
+			<div>
+				<label for="name">Full name: <span>*</span></label>
+				<input id="name" type="text" name="name" required />
+			</div>
+			<div>
+				<label for="gender">Gender: <span>*</span></label>
+				<select id="gender" required>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+			<div>
+				<label for="ssn">Social Security number: <span>*</span></label>
+				<input id="ssn" type="text" name="ssn" required />
+			</div>
+			<div>
+				<label for="phoneno">Phone number: <span>*</span></label>
+				<input id="phoneno" type="text" name="phoneno" required />
+			</div>
+			<div>
+				<label for="dob">Date of birth: <span>*</span></label>
+				<input id="dob" type="text" name="dob" required />
+			</div>
+			<button id="back">BACK</button>
+			<button id="add-btn">ADD</button>
+		</fieldset>
+			<!--Result: <span id="result"></span>-->
+	</form>
 </body>
 </html>
