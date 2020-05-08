@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta charset="utf-8">
+	<title>ADD PATIENT</title>
+</head>
+
+
+
+<body>
+
+	<form action="add-patient" method="get">
+          ssn     : <input type="text" name="ssn" id="ssn"><br><br>
+          phoneno : <input type="text" name="phoneno" id="phoneno"><br><br>
+          dob     : <input type="text" name="dob" id ="dob"><br><br>
+          gender  : <input type="text" name="gender" id ="gender"><br><br>
+          name    : <input type="text" name="name" id ="name"><br><br>
+          <!--Result: <span id="result"></span>-->
+          <br>
+    </form>
+
+	<button id="add-btn">ADD</button><br><br>
+	<button id="back">BACK</button><br><br>
+	
+	<script type="text/javascript">	
+		var addBtn = document.getElementById('add-btn');
+		addBtn.addEventListener('click', addItem);
+		
+		var Patient = {
+			ssn,
+			phoneno,
+			dob,
+			gender,
+			name
+		};
+
+		function addItem() {
+        	var ssn = document.getElementById('ssn'); 
+        	var phoneno = document.getElementById('phoneno'); 
+        	var dob = document.getElementById('dob'); 
+        	var gender = document.getElementById('gender'); 
+        	var name = document.getElementById('name'); 
+			
+			var newSsn = ssn.value;
+			var newPhoneno = phoneno.value;
+			var newDob = dob.value;
+			var newGender = gender.value;
+			var newName = name.value;
+
+			Patient.ssn = newSsn;
+			Patient.phoneno = newPhoneno;
+			Patient.dob = newDob;
+			Patient.gender = newGender;
+			Patient.name = newName;
+
+			var patientJSON = JSON.stringify(Patient);
+			//document.getElementById("result").innerHTML = patientJSON;
+		};
+		document.getElementById("back").onclick = function () {
+        	location.href = "index.html";
+   		};
+	</script>
+</body>
+</html>
