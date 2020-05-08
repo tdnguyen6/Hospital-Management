@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>RETRIEVE PATIENT</title>
+	<title>RETRIEVE VISIT</title>
 </head>
 
 
@@ -12,15 +12,38 @@
 <body>
 	<label for="id">id:</label>
 	<input id="id" type="text"/><br><br>
+
+	<label for="result">Result:</label>
+	<span id="result"></span><br><br>
+
 	<button id="retrieve-btn">RETRIEVE</button><br><br>
 	<button id="back">BACK</button><br><br>
 	
 	<script type="text/javascript">		
-		document.getElementById("retrieve-btn").onclick = function () {
-        	//Execution
-   		};
+		var retrieveBtn = document.getElementById('retrieve-btn');
+		retrieveBtn.addEventListener('click', retrieveItem);
+
+
+		var text = '{ "visit" : [' +
+			'{"id": "1", "cost": "123", "payMethod": "Cash", "checkIn": "1/5", "checkOut": "2/5"},' +
+			'{"id": "2", "cost": "456", "payMethod": "Cash", "checkIn": "2/5", "checkOut": "3/5"},' +
+			'{"id": "3", "cost": "789", "payMethod": "Cash", "checkIn": "3/5","checkOut": "4/5"}]}'; 
+
+		function retrieveItem(){
+			var id = document.getElementById("id");
+			var idValue = id.value;
+			var visitObj = JSON.parse(text);
+
+			for (i = 0; i < 3; i++) {
+				if (visitObj.visit[i].id == idValue) {
+					document.getElementById("result").innerHTML = "id: " + visitObj.visit[i].id + " cost: " + visitObj.visit[i].cost
+					+ " payMethod: " + visitObj.visit[i].payMethod + " checkIn: " + visitObj.visit[i].checkIn + " checkOut: " + visitObj.visit[i].checkOut;
+				}
+			}
+		}
+
    		document.getElementById("back").onclick = function () {
-        	//Execution
+        	location.href = "index.html";
    		};
 	</script>
 </body>

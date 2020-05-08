@@ -10,23 +10,53 @@
 
 
 <body>
-	<label for="id">id:</label>
-	<input id="id" type="text"/><br><br>
-	<label for="cost">phoneno:</label>
-	<input id="cost" type="text"/><br><br>
-	<label for="pay-method">Pay method:</label>
-	<input id="pay-method" type="text"/><br><br>
-	<label for="check-in">Check in:</label>
-	<input id="check-in" type="text"/><br><br>
-	<label for="check-out">Check out:</label>
-	<input id="check-out" type="text"/><br><br>
+	<form action="add-visit" method="get">
+          id     		: <input type="text" name="id" id="id"><br><br>
+          cost 			: <input type="text" name="cost" id="cost"><br><br>
+          pay method	: <input type="text" name="pay-method" id="payMethod"><br><br>
+          check in  	: <input type="text" name="check-in" id ="checkIn"><br><br>
+          check out    	: <input type="text" name="check-out" id ="checkOut"><br><br>
+          Result: <span id="result"></span>
+          <br>
+    </form>
 	<button id="add-btn">ADD</button><br><br>
 	<button id="back">BACK</button><br><br>
 	
 	<script type="text/javascript">		
-		document.getElementById("add-btn").onclick = function () {
-        	//Execution
-   		};
+		var addBtn = document.getElementById('add-btn');
+		addBtn.addEventListener('click', addItem);
+
+		var Visit = {
+			id,
+			cost,
+			payMethod,
+			checkIn,
+			checkOut
+		};
+
+		function addItem() {
+        	var id = document.getElementById('id');
+        	var cost = document.getElementById('cost'); 
+			var payMethod = document.getElementById('payMethod'); 
+			var checkIn = document.getElementById('checkIn'); 
+			var checkOut = document.getElementById('checkOut'); 
+
+			var newId = id.value;
+			var newCost = cost.value;
+			var newPayMethod = payMethod.value;
+			var newCheckIn = checkIn.value;
+			var newCheckOut = checkOut.value;
+
+			Visit.id = newId;
+			Visit.cost = newCost;
+			Visit.payMethod = newPayMethod;
+			Visit.checkIn = newCheckIn;
+			Visit.checkOut = newCheckOut;
+			
+			var visitJSON = JSON.stringify(Visit);
+			document.getElementById("result").innerHTML = visitJSON;
+		};
+		
    		document.getElementById("back").onclick = function () {
         	location.href = "index.html";
    		};

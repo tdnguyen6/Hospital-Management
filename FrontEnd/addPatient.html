@@ -17,7 +17,7 @@
           dob     : <input type="text" name="dob" id ="dob"><br><br>
           gender  : <input type="text" name="gender" id ="gender"><br><br>
           name    : <input type="text" name="name" id ="name"><br><br>
-          <!--Result: <span id="result"></span>-->
+          Result: <span id="result"></span>
           <br>
     </form>
 
@@ -56,7 +56,7 @@
 			Patient.name = newName;
 
 			var patientJSON = JSON.stringify(Patient);
-			//document.getElementById("result").innerHTML = patientJSON;
+			document.getElementById("result").innerHTML = patientJSON;
 		};
 		document.getElementById("back").onclick = function () {
         	location.href = "index.html";
