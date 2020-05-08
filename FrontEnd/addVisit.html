@@ -1,65 +1,123 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
 	<meta charset="utf-8">
-	<title>ADD VISIT</title>
+	<title>ADD PATIENT</title>
+	<style>
+		body {
+			font-family: arial, sans-serif;
+		}
+		fieldset {
+			border: 0px;
+		}
+		fieldset > div {
+			margin-bottom: 30px;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		label span {
+			color: red;
+		}
+		input {
+			padding: 10px;
+			width: 200px;
+		}
+		input:valid {
+			border: 2px solid green;
+		}
+		input:invalid {
+			border: 2px solid red;
+		}
+		select {
+			border-radius: 0px;
+			color: black;
+			-webkit-appearance: none;
+			padding: 10px 10px;
+			width: 224px;
+		}
+		button {
+		  background: green;
+		  border: 0;
+		  color: white;
+			font-weight: bold;
+		  width: 112px;
+		  padding: 10px;
+		  text-transform: uppercase;
+		}
+	</style>
 </head>
-
-
-
 <body>
-	<form action="add-visit" method="get">
-          id     		: <input type="text" name="id" id="id"><br><br>
-          cost 			: <input type="text" name="cost" id="cost"><br><br>
-          pay method	: <input type="text" name="pay-method" id="payMethod"><br><br>
-          check in  	: <input type="text" name="check-in" id ="checkIn"><br><br>
-          check out    	: <input type="text" name="check-out" id ="checkOut"><br><br>
-          Result: <span id="result"></span>
-          <br>
-    </form>
-	<button id="add-btn">ADD</button><br><br>
-	<button id="back">BACK</button><br><br>
-	
 	<script type="text/javascript">		
-		var addBtn = document.getElementById('add-btn');
-		addBtn.addEventListener('click', addItem);
+			var addBtn = document.getElementById('add-btn');
+			addBtn.addEventListener('click', addItem);
 
-		var Visit = {
-			id,
-			cost,
-			payMethod,
-			checkIn,
-			checkOut
-		};
+			var Visit = {
+				id,
+				cost,
+				payMethod,
+				checkIn,
+				checkOut
+			};
 
-		function addItem() {
-        	var id = document.getElementById('id');
-        	var cost = document.getElementById('cost'); 
-			var payMethod = document.getElementById('payMethod'); 
-			var checkIn = document.getElementById('checkIn'); 
-			var checkOut = document.getElementById('checkOut'); 
+			function addItem() {
+	      var id = document.getElementById('id');
+	      var cost = document.getElementById('cost'); 
+				var payMethod = document.getElementById('payMethod'); 
+				var checkIn = document.getElementById('checkIn'); 
+				var checkOut = document.getElementById('checkOut'); 
 
-			var newId = id.value;
-			var newCost = cost.value;
-			var newPayMethod = payMethod.value;
-			var newCheckIn = checkIn.value;
-			var newCheckOut = checkOut.value;
+				var newId = id.value;
+				var newCost = cost.value;
+				var newPayMethod = payMethod.value;
+				var newCheckIn = checkIn.value;
+				var newCheckOut = checkOut.value;
 
-			Visit.id = newId;
-			Visit.cost = newCost;
-			Visit.payMethod = newPayMethod;
-			Visit.checkIn = newCheckIn;
-			Visit.checkOut = newCheckOut;
+				Visit.id = newId;
+				Visit.cost = newCost;
+				Visit.payMethod = newPayMethod;
+				Visit.checkIn = newCheckIn;
+				Visit.checkOut = newCheckOut;
+				
+				var visitJSON = JSON.stringify(Visit);
+				document.getElementById("result").innerHTML = visitJSON;
+			};
 			
-			var visitJSON = JSON.stringify(Visit);
-			document.getElementById("result").innerHTML = visitJSON;
-		};
+	   	document.getElementById("back").onclick = function () {
+	      location.href = "index.html";
+	   	};
+		</script>
 		
-   		document.getElementById("back").onclick = function () {
-        	location.href = "index.html";
-   		};
-	</script>
+	<form action="url-to-send-form-data" method="post">
+		<fieldset>
+			<div>
+				<label for="id">Patient ID:<span>*</span></label>
+				<input id="id" type="text" name="id" required/>
+			</div>
+			<div>
+				<label for="cost">Phone Number:<span>*</span></label>
+				<input id="cost" type="text" name="cost" required/>
+			</div>
+			<div>
+				<label for="pay-method">Pay method:<span>*</span></label>
+				<select id="pay-method" required>
+					<option value="Cash">Cash</option>
+					<option value="Card">Card</option>
+				</select>
+			</div>
+			<div>
+				<label for="check-in">Check-in date:<span>*</span></label>
+				<input id="check-in" type="date" name="check-in" required/>
+			</div>
+			<div>
+				<label for="check-out">Check-out date:<span>*</span></label>
+				<input id="check-out" type="date" name="check-out" required/>
+			</div>
+			<button id="back">BACK</button>
+			<button id="add-btn">ADD</button>
+		</fieldset>
+			<!--Result: <span id="result"></span>-->
+	</form>
 </body>
 </html>
