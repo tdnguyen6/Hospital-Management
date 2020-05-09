@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>HMS</title>
+	<title>UPDATE PATIENT</title>
 </head>
 
 
@@ -12,23 +12,44 @@
 <body>
 	<label for="ssn">ssn:</label>
 	<input id="ssn" type="text"/><br><br>
-	<label for="phoneno">phoneno:</label>
-	<input id="phoneno" type="text"/><br><br>
-	<label for="dob">dob:</label>
-	<input id="dob" type="text"/><br><br>
-	<label for="gender">gender:</label>
-	<input id="gender" type="text"/><br><br>
-	<label for="name">name:</label>
-	<input id="name" type="text"/><br><br>
-	<button id="update-btn">UPDATE</button><br><br>
+	
+	<label for="result">Result:</label>
+	<span id="result"></span><br><br>
+	
+	<button id="find-btn">FIND</button><br><br>
 	<button id="back">BACK</button><br><br>
 	
-	<script type="text/javascript">		
-		document.getElementById("update-btn").onclick = function () {
-        	//Execution
-   		};
+
+
+
+	<script type="text/javascript">	
+		var findBtn = document.getElementById('find-btn');
+		findBtn.addEventListener('click', findItem);	
+		
+		var text = '{ "patient" : [' +
+			'{"ssn": "1", "phoneno": "123", "dob": "01/01/1999", "gender": "Male", "name": "A"},' +
+			'{"ssn": "2", "phoneno": "456", "dob": "11/05/2000", "gender": "Female", "name": "B"},' +
+			'{"ssn": "3", "phoneno": "789", "dob": "19/05/2000", "gender": "Male","name": "C"}]}'; 
+		
+		function findItem() {
+			var ssn = document.getElementById("ssn");
+			var ssnValue = ssn.value;
+			var patientObj = JSON.parse(text);
+
+			for (i = 0; i < 3; i++) {
+				if (patientObj.patient[i].ssn == ssnValue) {
+					document.getElementById("result").innerHTML = "\nssn: " + patientObj.patient[i].ssn + 
+					" phoneno: " + patientObj.patient[i].phoneno + 
+					" dob: " + patientObj.patient[i].dob + 
+					" gender: " + patientObj.patient[i].gender + 
+					" name: " + patientObj.patient[i].name;
+				}
+			}
+		}
+
+
    		document.getElementById("back").onclick = function () {
-        	//Execution
+        	location.href = "index.html";
    		};
 	</script>
 </body>
