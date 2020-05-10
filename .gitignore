@@ -3,3 +3,6 @@
 **/*.sqlite
 ## sqlserver
 **/*.bak
+
+## vendor
+vendor

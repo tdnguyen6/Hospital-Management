@@ -1,6 +1,9 @@
 <?php
+require_once __DIR__ . "/Room.php";
+require_once __DIR__ . "/Prescription.php";
+require_once __DIR__ . "/MedicalService.php";
 
-namespace Domain\hms\Model;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -8,6 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Person
 {
+    protected EntityManager $entityManager;
+
+    /**
+     * @param EntityManager $entityManager
+     */
+    public function setEntityManager(EntityManager $entityManager): void
+    {
+        $this->entityManager = $entityManager;
+    }
     /**
      * @ORM\Column(length=30)
      */
@@ -40,7 +52,7 @@ class Person
 
     /**
      * Get the value of ssn
-     */ 
+     */
     public function getSsn()
     {
         return $this->ssn;
@@ -50,7 +62,7 @@ class Person
      * Set the value of ssn
      *
      * @return  self
-     */ 
+     */
     public function setSsn($ssn)
     {
         $this->ssn = $ssn;
@@ -60,7 +72,7 @@ class Person
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -70,7 +82,7 @@ class Person
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -80,7 +92,7 @@ class Person
 
     /**
      * Get the value of gender
-     */ 
+     */
     public function getGender()
     {
         return $this->gender;
@@ -90,7 +102,7 @@ class Person
      * Set the value of gender
      *
      * @return  self
-     */ 
+     */
     public function setGender($gender)
     {
         $this->gender = $gender;
@@ -100,47 +112,48 @@ class Person
 
     /**
      * Get the value of dob
-     */ 
+     */
     public function getDob()
     {
-        return $this->dob;
+        return $this->dob->format('Y-m-d');
     }
 
     /**
      * Set the value of dob
      *
+     * @param string $dob
      * @return  self
-     */ 
-    public function setDob($dob)
+     */
+    public function setDob(string $dob)
     {
-        $this->dob = $dob;
-
+        $this->dob = DateTime::createFromFormat("Y-m-d", $dob);
+        $this->setAge();
         return $this;
     }
 
     /**
      * Get the value of age
-     */ 
+     */
     public function getAge()
     {
-        return $this->age;
+        return date_diff(new DateTime('now'), $this->dob)->format("%Y");
     }
 
     /**
      * Set the value of age
      *
      * @return  self
-     */ 
-    public function setAge($age)
+     */
+    public function setAge()
     {
-        $this->age = $age;
+        $this->age = date_diff(new DateTime('now'), $this->dob)->format("%Y");
 
         return $this;
     }
 
     /**
      * Get the value of phone
-     */ 
+     */
     public function getPhone()
     {
         return $this->phone;
@@ -150,11 +163,22 @@ class Person
      * Set the value of phone
      *
      * @return  self
-     */ 
+     */
     public function setPhone($phone)
     {
         $this->phone = $phone;
 
         return $this;
+    }
+
+    public function get() {
+        return [
+            "ssn" => $this->getSsn(),
+            "name" => $this->getName(),
+            "gender" => $this->getGender(),
+            "dob" => $this->getDob(),
+            "age" => $this->getAge(),
+            "phone" => $this->getPhone()
+        ];
     }
 }

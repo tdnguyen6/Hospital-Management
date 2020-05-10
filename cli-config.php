@@ -1,5 +1,6 @@
 <?php
-// cli-config.php
-require_once __DIR__ . "/configs/bootstrap.php";
 
-return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+// cli-config.php
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+
+return ConsoleRunner::createHelperSet((require_once __DIR__.'/src/functions/getEntityManager.php')('hms', 'mysql'));

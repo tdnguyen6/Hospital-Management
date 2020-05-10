@@ -1,38 +1,45 @@
 <?php
-namespace Domain\hms\Model;
-require_once __DIR__ . "/Person.php";
 
-use Doctrine\ORM\Mapping as ORM;
+require_once __DIR__ . "/Person.php";
+require_once __DIR__ . "/Visit.php";
+require_once __DIR__ . "/Room.php";
+require_once __DIR__ . "/Prescription.php";
+require_once __DIR__ . "/MedicalService.php";
+
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\TransactionRequiredException;
 
 /**
- * @ORM\Entity(repositoryClass="Domain\hms\Models\PatientRepo")
+ * @ORM\Entity
  */
-class Patient extends Person {
-    public function __construct() {
-        $this->visits = new ArrayCollection();
-    }
-    
+class Patient extends Person
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      */
     private $id;
-
     /**
      * @ORM\OneToMany(targetEntity="Visit", mappedBy="byPatient")
      */
     private $visits;
-
     /**
      * @ORM\Column(type="integer")
      */
     private $noOfVisits;
 
+    public function __construct()
+    {
+        $this->visits = new ArrayCollection();
+    }
+
     /**
      * Get the value of noOfVisits
-     */ 
+     */
     public function getNoOfVisits()
     {
         return $this->noOfVisits;
@@ -42,7 +49,7 @@ class Patient extends Person {
      * Set the value of noOfVisits
      *
      * @return  self
-     */ 
+     */
     public function setNoOfVisits($noOfVisits)
     {
         $this->noOfVisits = $noOfVisits;
@@ -52,7 +59,7 @@ class Patient extends Person {
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -62,7 +69,7 @@ class Patient extends Person {
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -72,7 +79,7 @@ class Patient extends Person {
 
     /**
      * Get the value of visits
-     */ 
+     */
     public function getVisits()
     {
         return $this->visits;
@@ -81,12 +88,52 @@ class Patient extends Person {
     /**
      * Set the value of visits
      *
+     * @param array $visitIDs
      * @return  self
-     */ 
-    public function setVisits($visits)
+     * @throws TransactionRequiredException
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function setVisits(array $visitIDs)
     {
-        $this->visits = $visits;
+        foreach ($visitIDs as $visitID) {
+            $visitObj = $this->entityManager->find('Visit', $visitID);
+            $this->visits[] = $visitObj;
+        }
+        $this->noOfVisits = count($this->visits);
 
         return $this;
     }
+
+    public function get() {
+        $person = parent::get();
+        $patient = [
+            "id" => $this->getId(),
+            "noOfVisits" => $this->getNoOfVisits()
+        ];
+        return array_merge($person, $patient);
+    }
+
+    public static function validate(array $fields): bool
+    {
+        if (count($fields) === 6
+            && array_key_exists("ssn", $fields)
+            && array_key_exists("name", $fields)
+            && array_key_exists("gender", $fields)
+            && array_key_exists("dob", $fields)
+            && array_key_exists("phone", $fields)
+            && array_key_exists("visits", $fields)
+            && $fields["ssn"] !== ""
+            && $fields["name"] !== ""
+            && $fields["gender"] !== ""
+            && $fields["dob"] !== ""
+            && $fields["age"] !== ""
+            && $fields["phone"] !== ""
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
