@@ -1,35 +1,91 @@
 <!DOCTYPE html>
 <html>
-
-
-<head>
-	<meta charset="utf-8">
-	<title>HMS</title>
-</head>
-
-
-
-<body>
-	<label for="ssn">ssn:</label>
-	<input id="ssn" type="text"/><br><br>
-	<label for="phoneno">phoneno:</label>
-	<input id="phoneno" type="text"/><br><br>
-	<label for="dob">dob:</label>
-	<input id="dob" type="text"/><br><br>
-	<label for="gender">gender:</label>
-	<input id="gender" type="text"/><br><br>
-	<label for="name">name:</label>
-	<input id="name" type="text"/><br><br>
-	<button id="update-btn">UPDATE</button><br><br>
-	<button id="back">BACK</button><br><br>
-	
-	<script type="text/javascript">		
-		document.getElementById("update-btn").onclick = function () {
-        	//Execution
-   		};
-   		document.getElementById("back").onclick = function () {
-        	//Execution
-   		};
-	</script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>HOTEL MANAGEMENT SYSTEM</title>
+		<style>
+			body {
+				font-family: arial, sans-serif;
+			}
+			fieldset {
+				border: 0px;
+			}
+			fieldset > div {
+				margin-bottom: 30px;
+			}
+			label {
+				display: block;
+				margin-bottom: 10px;
+			}
+			label span {
+				color: red;
+			}
+			input {
+				padding: 10px;
+				width: 200px;
+			}
+			input:valid {
+				border: 2px solid green;
+			}
+			input:invalid {
+				border: 2px solid red;
+			}
+			select {
+				border-radius: 0px;
+				color: black;
+				-webkit-appearance: none;
+				padding: 10px 10px;
+				width: 224px;
+			}
+			button {
+			  background: green;
+			  border: 0;
+			  color: white;
+				font-weight: bold;
+			  width: 112px;
+			  padding: 10px;
+			  text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="url_to_send_data" method="post">
+			<fieldset>
+				<div>
+					<label for="name">Name:<span>*</span></label>
+					<input id="name" type="text" name="name" required/>
+				</div>
+				<div>
+					<label for="ssn">Social Security number:<span>*</span></label>
+					<input id="ssn" type="text" name="id" required/>
+				</div>
+				<div>
+					<label for="dob">Date of Birth:<span>*</span></label>
+					<input id="dob" type="text" name="dob" required/>
+				</div>
+				<div>
+					<label for="gender">Gender: <span>*</span></label>
+					<select id="gender" required>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				<div>
+					<label for="phoneno">Phone number:<span>*</span></label>
+					<input id="phoneno" type="text" name="phoneno" required/>
+				</div>
+				<button id="back">BACK</button>
+				<button id="update-btn">UPDATE</button>
+			</fieldset>
+		</form>
+		
+		<script type="text/javascript">		
+			document.getElementById("update-btn").onclick = function () {
+	        	//Execution
+	   		};
+	   		document.getElementById("back").onclick = function () {
+	        	//Execution
+	   		};
+		</script>
+	</body>
 </html>
