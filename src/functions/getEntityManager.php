@@ -18,6 +18,7 @@ return function (string $databaseName, string $databaseType = 'sqlite', string $
     $urlBy = [
         'sqlite' => "sqlite:///".__DIR__."/../../$databaseName.sqlite",
         'mysql' => "mysql://$uname:$passwd@$host:$port/3431215_$databaseName",
+        'sqlsrv' => "sqlsrv://$uname:$passwd@$host:$port/$databaseName",
     ];
     try {
         $conn = DriverManager::getConnection(['url' => $urlBy[$databaseType]]);
