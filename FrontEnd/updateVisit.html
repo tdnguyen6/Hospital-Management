@@ -1,35 +1,91 @@
 <!DOCTYPE html>
 <html>
-
-
-<head>
-	<meta charset="utf-8">
-	<title>UPDATE VISIT</title>
-</head>
-
-
-
-<body>
-	<label for="id">id:</label>
-	<input id="id" type="text"/><br><br>
-	<label for="cost">phoneno:</label>
-	<input id="cost" type="text"/><br><br>
-	<label for="pay-method">Pay method:</label>
-	<input id="pay-method" type="text"/><br><br>
-	<label for="check-in">Check in:</label>
-	<input id="check-in" type="text"/><br><br>
-	<label for="check-out">Check out:</label>
-	<input id="check-out" type="text"/><br><br>
-	<button id="update-btn">UPDATE</button><br><br>
-	<button id="back">BACK</button><br><br>
-	
-	<script type="text/javascript">		
-		document.getElementById("update-btn").onclick = function () {
-        	//Execution
-   		};
-   		document.getElementById("back").onclick = function () {
-        	location.href = "index.html";
-   		};
-	</script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>UPDATE VISIT</title>
+		<style>
+			body {
+				font-family: arial, sans-serif;
+			}
+			fieldset {
+				border: 0px;
+			}
+			fieldset > div {
+				margin-bottom: 30px;
+			}
+			label {
+				display: block;
+				margin-bottom: 10px;
+			}
+			label span {
+				color: red;
+			}
+			input {
+				padding: 10px;
+				width: 200px;
+			}
+			input:valid {
+				border: 2px solid green;
+			}
+			input:invalid {
+				border: 2px solid red;
+			}
+			select {
+				border-radius: 0px;
+				color: black;
+				-webkit-appearance: none;
+				padding: 10px 10px;
+				width: 224px;
+			}
+			button {
+			  background: green;
+			  border: 0;
+			  color: white;
+				font-weight: bold;
+			  width: 112px;
+			  padding: 10px;
+			  text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="url-to-send-form-data" method="post">
+			<fieldset>
+				<div>
+					<label for="id">Patient ID:<span>*</span></label>
+					<input id="id" type="text" name="id" required/>
+				</div>
+				<div>
+					<label for="cost">Phone Number:<span>*</span></label>
+					<input id="cost" type="text" name="cost" required/>
+				</div>
+				<div>
+					<label for="pay-method">Pay method:<span>*</span></label>
+					<select id="pay-method" required>
+						<option value="Cash">Cash</option>
+						<option value="Card">Card</option>
+					</select>
+				</div>
+				<div>
+					<label for="check-in">Check-in date:<span>*</span></label>
+					<input id="check-in" type="date" name="check-in" required/>
+				</div>
+				<div>
+					<label for="check-out">Check-out date:<span>*</span></label>
+					<input id="check-out" type="date" name="check-out" required/>
+				</div>
+				<button id="back">BACK</button>
+				<button id="update-btn">UPDATE</button>
+			</fieldset>
+		</form>
+		
+		<script type="text/javascript">		
+			document.getElementById("update-btn").onclick = function () {
+	        	//Execution
+	   		};
+	   		document.getElementById("back").onclick = function () {
+	        	location.href = "index.html";
+	   		};
+		</script>
+	</body>
 </html>
