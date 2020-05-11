@@ -10,17 +10,30 @@
 
 
 <body>
+
 	<label for="ssn">ssn:</label>
 	<input id="ssn" type="text"/><br><br>
 	
-	<button id="find-btn">FIND</button>
+	<button id="find-btn">FIND</button><br><br>	
 	
-	<p contenteditable="true" id="editableResult"></p>
-
+	<div id="result">Result: <br><br>
+		<label for="phoneno">phoneno:</label>
+		<p id="phoneno"></p>
+		<p id="phonenoBtn"></p>
+		<label for="dob">dob:</label>
+		<p id="dob"></p>
+		<p id="dobBtn"></p>
+		<label for="gender">gender:</label>
+		<p id="gender"></p>
+		<p id="genderBtn"></p>
+		<label for="name">name:</label>
+		<p id="name"></p>
+		<p id="nameBtn"></p>
+	</div>
+	<p id="readonly"></p>
 	<button id="back">BACK</button><br><br>
-	
-
 	<script type="text/javascript" src="updatePatient.js">	
 	</script>
+
 </body>
 </html>
