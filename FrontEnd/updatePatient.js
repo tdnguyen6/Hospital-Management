@@ -38,35 +38,25 @@
 			document.getElementById("phoneno").setAttribute("contenteditable", "true");
 			document.getElementById("uPhonenoBtn").style.display = "none";
 			document.getElementById("phonenoBtn").innerHTML = '<button id="sPhonenoBtn" onclick="savePhoneno()">SAVE</button><br><br>';
-			var phoneno = document.getElementById('phoneno');
-			var newPhoneno = phoneno.value;
 		}
 		function updateDob() {
 			document.getElementById("dob").setAttribute("contenteditable", "true");
 			document.getElementById("uDobBtn").style.display = "none";
 			document.getElementById("dobBtn").innerHTML = '<button id="sDobBtn" onclick="saveDob()">SAVE</button><br><br>';
-			var dob = document.getElementById('dob');
-			var newDob = dob.value;
-
 		}
 		function updateGender() {
 			document.getElementById("gender").setAttribute("contenteditable", "true");
 			document.getElementById("uGenderBtn").style.display = "none";
 			document.getElementById("genderBtn").innerHTML = '<button id="sGenderBtn" onclick="saveGender()">SAVE</button><br><br>';
-			var gender = document.getElementById('gender');
-			var newGender = gender.value;
 		}
 		function updateName() {
 			document.getElementById("name").setAttribute("contenteditable", "true");
 			document.getElementById("uNameBtn").style.display = "none";
 			document.getElementById("nameBtn").innerHTML = '<button id="sNameBtn" onclick="saveName()">SAVE</button><br><br>';
-			var name = document.getElementById('name');
-			var newName = name.value;
 		}	
 
 		function savePhoneno() {
-			var item = document.getElementById("phoneno");
-			var value = item.value;
+			var value = document.getElementById("phoneno").innerHTML;
 			patientObj.patient[position].phoneno = value; 
 			document.getElementById("phoneno").setAttribute("contenteditable", "false");
 			document.getElementById("sPhonenoBtn").style.display = "none";
@@ -74,27 +64,24 @@
 		}
 		
 		function saveDob() {
-			var item = document.getElementById("dob");
-			var value = item.value;
-			patientObj.patient[position].phoneno = value; 
+			var value = document.getElementById("dob").innerHTML;
+			patientObj.patient[position].dob = value; 
 			document.getElementById("dob").setAttribute("contenteditable", "false");
 			document.getElementById("sDobBtn").style.display = "none";
 			document.getElementById("dobBtn").innerHTML = '<button id="uDobBtn" onclick="updateDob()">UPDATE</button><br><br>';
 		}	
 
 		function saveGender() {
-			var item = document.getElementById("gender");
-			var value = item.value;
-			patientObj.patient[position].phoneno = value; 
+			var value = document.getElementById("gender").innerHTML;
+			patientObj.patient[position].gender = value; 
 			document.getElementById("gender").setAttribute("contenteditable", "false");
 			document.getElementById("sGenderBtn").style.display = "none";
 			document.getElementById("genderBtn").innerHTML = '<button id="uGenderBtn" onclick="updateGender()">UPDATE</button><br><br>';
 		}
 
 		function saveName() {
-			var item = document.getElementById("name");
-			var value = item.value;
-			patientObj.patient[position].phoneno = value; 
+			var value = document.getElementById("name").innerHTML;
+			patientObj.patient[position].name = value; 
 			document.getElementById("name").setAttribute("contenteditable", "false");
 			document.getElementById("sNameBtn").style.display = "none";
 			document.getElementById("nameBtn").innerHTML = '<button id="uNameBtn" onclick="updateName()">UPDATE</button><br><br>';
@@ -102,11 +89,11 @@
 
 		function displayUpdated(){
 			document.getElementById("readonly").innerHTML = "Updated info:<br><br>" + 
-			" ssn: " + patientObj.patient[position].ssn + "<br><br>" +
-			" phoneno: " + patientObj.patient[position].phoneno + "<br><br>" +
-			" dob: " + patientObj.patient[position].dob + "<br><br>" +
-			" gender: " + patientObj.patient[position].gender + "<br><br>" +
-			" name: " + patientObj.patient[position].name;
+			"ssn: " + patientObj.patient[position].ssn + "<br><br>" +
+			"phoneno: " + patientObj.patient[position].phoneno + "<br><br>" +
+			"dob: " + patientObj.patient[position].dob + "<br><br>" +
+			"gender: " + patientObj.patient[position].gender + "<br><br>" +
+			"name: " + patientObj.patient[position].name;
 			var patientJSON = JSON.stringify(patientObj);
 		}
 
