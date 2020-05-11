@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            box-sizing: border-box;
+            background: lightyellow;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 5rem;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .link-box {
+            border: 1px solid brown;
+            border-radius: 1rem;
+            text-align: center;
+            padding: 1rem;
+            background-color: firebrick;
+            color: snow;
+            line-height: 2rem;
+            letter-spacing: 1px;
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background-color: #eee;
+            border: 1px solid #999;
+            line-height: 1rem;
+            letter-spacing: 1px;
+            display: block;
+        }
+    </style>
+    <title>API References</title>
+</head>
+
+<body>
+    <h1 class="center-text">How to use this API</h1>
+    <hr>
+    <p>
+        Every rest API ultilize multiple HTTP methods for clients to send requests.
+    </p>
+    <p>
+        Our API uses 5 HTTP methods: GET, POST, PUT, PATCH, DELETE to serves all the CRUD (create, read, update, delte)
+        functions on the database.
+    </p>
+    <hr>
+    <div class="center-text">
+        <h1>Some Examples</h1>
+        <em><small> <strong>Notice:</strong> all examples are relative paths</small></em>
+    </div>
+    <hr>
+    <p>
+    <h3>HTTP GET</h3>
+    <small>
+        This is used for Reading/Querying information from the database
+    </small>
+
+    <p>
+    <h4>Base case with no parameters, return all records of a table</h4>
+    <div class="link-box">
+        /{database name}/{table name}
+    </div>
+    <em><small> <strong>Example:</strong> /hms/Patient </small></em>
+    </p>
+
+    <p>
+    <h4>Query with parameters, including attributes or filters</h4>
+    <div class="link-box">
+        /{database name}/{table name}?att1=val1&att2=val2&att3=val3&sortAsc=attA,attB&sortDsc=attC,attD&num=limit
+    </div>
+    <em><small> <strong>Example:</strong> /hms/Patient?id=10 </small></em><br>
+    <em><small> <strong>Example:</strong> /hms/Patient?noOfVisits=12 </small></em><br>
+    <em><small> <strong>Example:</strong> /hms/Patient?id=10&sortAsc=age&sortDsc=id,name </small></em><br>
+    <em><small> <strong>Example:</strong> /hms/Visit?paid=1&sortDsc=checkIn&sortAsc=id&num=10 (num is number of records
+            to return) </small></em>
+    </p>
+    </p>
+    <hr>
+    <p>
+    <h3>HTTP POST</h3>
+    <small>
+        This is used for Creating full records (must supply all fields) on the database.
+    </small>
+    <div class="link-box">
+        /{database name}/{table name}
+    </div>
+    <em><small> <strong>Example:</strong> /hms/Patient </small></em> <br>
+    <em><small> <strong>Request Body:</strong> All fields except ID (will be generated automatically)</small></em>
+    <pre>
+        <code>
+    [
+        {
+            "ssn":"1111-11-111",
+            "name":"Test Patient 1",
+            "gender":"Male",
+            "dob":"1960-06-16",
+            "phone":"113",
+            "visits":[1, 2, 3, 4, 5]
+        },
+        {
+            "ssn":"222-2222-22",
+            "name":"Test Patient 2",
+            "gender":"Female",
+            "dob":"1970-07-17",
+            "phone":"114",
+            "visits":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        {
+            "ssn":"333-33-3333",
+            "name":"Test Patient 3",
+            "gender":"Male",
+            "dob":"1980-08-28",
+            "phone":"115",
+            "visits":[]
+        }
+    ]
+        </code>
+    </pre>
+    <em><small> <strong>Response:</strong> All records created</small></em>
+    <pre>
+        <code>
+    {
+        "status": 201,
+        "rowsAffected": 3,
+        "message": "Created 3 records, 0 records failed",
+        "data": [
+            {
+                "ssn": "1111-11-111",
+                "name": "Test Patient 1",
+                "gender": "Male",
+                "dob": "1960-06-16",
+                "age": "59",
+                "phone": "113",
+                "id": 51,
+                "noOfVisits": 5
+            },
+            {
+                "ssn": "222-2222-22",
+                "name": "Test Patient 2",
+                "gender": "Female",
+                "dob": "1970-07-17",
+                "age": "49",
+                "phone": "114",
+                "id": 52,
+                "noOfVisits": 10
+            },
+            {
+                "ssn": "333-33-3333",
+                "name": "Test Patient 3",
+                "gender": "Male",
+                "dob": "1980-08-28",
+                "age": "39",
+                "phone": "115",
+                "id": 53,
+                "noOfVisits": 0
+            }
+        ]
+    }
+        </code>
+    </pre>
+    </p>
+    <hr>
+    <p>
+    <h3>HTTP PUT</h3>
+    <small>
+        This is used for Overriding full records (must supply all fields) on the database.
+    </small>
+    <div class="link-box">
+        /{database name}/{table name}
+    </div>
+    <em><small> <strong>Example:</strong> /hms/Patient </small></em> <br>
+    <em><small> <strong>Request Body:</strong> Same as post but with existing IDs</small></em>
+    <pre>
+        <code>
+    [
+        {
+            "id": 51,
+            "ssn":"1111-11-111",
+            "name":"After Put 1",
+            "gender":"Male",
+            "dob":"1960-06-16",
+            "phone":"113",
+            "visits":[1, 2, 3, 4, 5]
+        },
+        {
+            "id": 52,
+            "ssn":"222-2222-22",
+            "name":"After Put 2",
+            "gender":"Female",
+            "dob":"1970-07-17",
+            "phone":"114",
+            "visits":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        {
+            "id": 53,
+            "ssn":"333-33-3333",
+            "name":"After Put 3",
+            "gender":"Male",
+            "dob":"1980-08-28",
+            "phone":"115",
+            "visits":[]
+        }
+    ]
+        </code>
+    </pre>
+    <em><small> <strong>Response: </strong>All records overriden</small></em>
+    <pre>
+        <code>
+    {
+        "status": 201,
+        "rowsAffected": 0,
+        "message": "Put 3 records, 0 records failed",
+        "data": [
+            {
+                "ssn": "1111-11-111",
+                "name": "After Put 1",
+                "gender": "Male",
+                "dob": "1960-06-16",
+                "age": "59",
+                "phone": "113",
+                "id": 51,
+                "noOfVisits": 5
+            },
+            {
+                "ssn": "222-2222-22",
+                "name": "After Put 2",
+                "gender": "Female",
+                "dob": "1970-07-17",
+                "age": "49",
+                "phone": "114",
+                "id": 52,
+                "noOfVisits": 10
+            },
+            {
+                "ssn": "333-33-3333",
+                "name": "After Put 3",
+                "gender": "Male",
+                "dob": "1980-08-28",
+                "age": "39",
+                "phone": "115",
+                "id": 53,
+                "noOfVisits": 0
+            }
+        ]
+    }
+        </code>
+    </pre>
+    </p>
+    <hr>
+    <p>
+    <h3>HTTP PATCH</h3>
+    <small>
+        This is used for Updating some fields of records (do not need all fields) on the database.
+    </small>
+    <div class="link-box">
+        /{database name}/{table name}
+    </div>
+    <em><small> <strong>Example:</strong> /hms/Patient </small></em> <br>
+    <em><small> <strong>Request Body:</strong> Same as put, but we don't need to supply all attributes</small></em>
+    <pre>
+        <code>
+    [
+        {
+            "id": 51,
+            "name":"After Patch 1"
+        },
+        {
+            "id": 52,
+            "name":"After Patch 2"
+        },
+        {
+            "id": 53,
+            "name":"After Patch 3"
+        }
+    ]
+        </code>
+    </pre>
+    <em><small> <strong>Response: </strong>All records patched</small></em>
+    <pre>
+        <code>
+    {
+        "status": 201,
+        "rowsAffected": 0,
+        "message": "Patched 3 records, 0 records failed",
+        "data": [
+            {
+                "ssn": "1111-11-111",
+                "name": "After Patch 1",
+                "gender": "Male",
+                "dob": "1960-06-16",
+                "age": "59",
+                "phone": "113",
+                "id": 51,
+                "noOfVisits": 5
+            },
+            {
+                "ssn": "222-2222-22",
+                "name": "After Patch 2",
+                "gender": "Female",
+                "dob": "1970-07-17",
+                "age": "49",
+                "phone": "114",
+                "id": 52,
+                "noOfVisits": 10
+            },
+            {
+                "ssn": "333-33-3333",
+                "name": "After Patch 3",
+                "gender": "Male",
+                "dob": "1980-08-28",
+                "age": "39",
+                "phone": "115",
+                "id": 53,
+                "noOfVisits": 0
+            }
+        ]
+    }
+        </code>
+    </pre>
+    </p>
+    <hr>
+    <p>
+    <h3>HTTP DELETE</h3>
+    <small>
+        This is used for Deleting records on the database.
+    </small>
+    <div class="link-box">
+        /{database name}/{table name}
+    </div>
+    <em><small> <strong>Example:</strong> /hms/Patient </small></em> <br>
+    <em><small> <strong>Request Body: </strong>All ids of Patient to delete</small></em>
+    <pre>
+        <code>
+    [51, 52, 53]
+        </code>
+    </pre>
+    <em><small> <strong>Response: </strong> All records delelted</small></em>
+    <pre>
+        <code>
+
+    {
+        "status": 202,
+        "rowsAffected": 3,
+        "message": "Deleted 3 out of 3 requested",
+        "data": [
+            {
+                "ssn": "1111-11-111",
+                "name": "After Patch 1",
+                "gender": "Male",
+                "dob": "1960-06-16",
+                "age": "59",
+                "phone": "113",
+                "id": 51,
+                "noOfVisits": 5
+            },
+            {
+                "ssn": "222-2222-22",
+                "name": "After Patch 2",
+                "gender": "Female",
+                "dob": "1970-07-17",
+                "age": "49",
+                "phone": "114",
+                "id": 52,
+                "noOfVisits": 10
+            },
+            {
+                "ssn": "333-33-3333",
+                "name": "After Patch 3",
+                "gender": "Male",
+                "dob": "1980-08-28",
+                "age": "39",
+                "phone": "115",
+                "id": 53,
+                "noOfVisits": 0
+            }
+        ]
+    }
+        </code>
+    </pre>
+    </p>
+
+</body>
+
+</html>

@@ -12,7 +12,7 @@ use Slim\Routing\RouteContext;
 
 $app = AppFactory::create();
 
-//$app->setBasePath("/~tidu/hms");
+$app->setBasePath("/~tidu/hms");
 
 // Parse json, form data and xml
 $app->addBodyParsingMiddleware();
@@ -23,118 +23,7 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, false, false);
 
 $app->get('/', function (Request $request, Response $response) {
-    $html = <<<HTML
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        body {
-            text-align: center;
-            background: bisque;
-        }
-        table {
-            margin: auto;
-        }
-        .innerTable {
-            width: 1000px;
-        }
-        .labelColumn {
-            width: 300px;
-        }
-        .linkColumn {
-            text-align: left;
-            padding: 1rem;
-        }
-        hr {
-            margin-bottom: 2rem;
-        }
-    </style>
-    <title>API References</title>
-</head>
-<body>
-    <h1>How to use this API</h1>
-    <hr>
-    <table border="1">
-        <tr>
-            <th>Methods</th>
-            <th>CRUD</th>
-            <th>Examples for Hospital Management Database</th>
-        </tr>
-        <tr>
-            <td>GET</td>
-            <td>Read</td>
-            <td>
-            <table border="1" class="innerTable">
-                <tr>
-                    <td class="labelColumn">Get all records</td>
-                    <td class="linkColumn">HTTP GET /hms/patient</td>
-                </tr>
-                <tr>
-                    <td class="labelColumn">Get records by params</td>
-                    <td class="linkColumn">HTTP GET /hms/patient?name=john&amp;ssn=12345&amp;phone=911</td>
-                </tr>
-                <tr>
-                    <td class="labelColumn">Get record by filter</td>
-                    <td class="linkColumn">HTTP GET /hms/patient?sortAsc=name&amp;sortDesc=age&amp;sortAsc=lastVisit</td>
-                </tr>
-            </table>
-            </td>
-        </tr>
-        <tr>
-            <td>POST</td>
-            <td>Create</td>
-            <td>
-                <table border="1" class="innerTable">
-                    <tr>
-                        <td class="labelColumn">Create record in http body</td>
-                        <td class="linkColumn">HTTP POST /hms/patient</td>
-                    </tr>
-                </table>
-            </td>          
-        </tr>
-        <tr>
-            <td>PUT</td>
-            <td>Override</td>
-            <td>
-                <table border="1" class="innerTable">
-                    <tr>
-                        <td class="labelColumn">Override record in http body</td>
-                        <td class="linkColumn">HTTP PUT /hms/patient</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>PATCH</td>
-            <td>Update</td>
-            <td>
-                <table border="1" class="innerTable">
-                    <tr>
-                        <td class="labelColumn">ID: record to change <br> Other params: fields to change</td>
-                        <td class="linkColumn">HTTP PATCH /hms/patient?id=1&amp;name=smith</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>DELETE</td>
-            <td>Delete</td>
-            <td>
-                <table border="1" class="innerTable">
-                    <tr>
-                        <td class="labelColumn">ID: record to delete</td>
-                        <td class="linkColumn">HTTP PATCH /hms/patient?id=1&amp;name=smith</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-</body>
-</html>
-HTML;
+    $html = file_get_contents(__DIR__.'/reference.html');
     $response->getBody()->write($html);
     return $response;
 });
