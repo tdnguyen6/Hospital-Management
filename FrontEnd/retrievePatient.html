@@ -1,52 +1,90 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<title>RETRIEVE PATIENT</title>
+		<style>
+			body {
+				font-family: arial, sans-serif;
+			}
+			fieldset {
+				border: 0px;
+			}
+			fieldset > div {
+				margin-bottom: 30px;
+			}
+			label {
+				display: block;
+				margin-bottom: 10px;
+			}
+			label span {
+				color: red;
+			}
+			input {
+				padding: 10px;
+				width: 200px;
+			}
+			input:valid {
+				border: 2px solid green;
+			}
+			input:invalid {
+				border: 2px solid red;
+			}
+			button {
+				background: green;
+				border: 0;
+				color: white;
+				font-weight: bold;
+				width: 112px;
+				padding: 10px;
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">		
+			var retrieveBtn = document.getElementById('retrieve-btn');
+			retrieveBtn.addEventListener('click', retrieveItem);
 
+			var text = '{ "patient" : [' +
+				'{"ssn": "1", "phoneno": "123", "dob": "01/01/1999", "gender": "Male", "name": "A"},' +
+				'{"ssn": "2", "phoneno": "456", "dob": "11/05/2000", "gender": "Female", "name": "B"},' +
+				'{"ssn": "3", "phoneno": "789", "dob": "19/05/2000", "gender": "Male","name": "C"}]}'; 
 
-<head>
-	<meta charset="utf-8">
-	<title>RETRIEVE PATIENT</title>
-</head>
+			function retrieveItem(){
+				var ssn = document.getElementById("ssn");
+				var ssnValue = ssn.value;
+				var patientObj = JSON.parse(text);
 
-
-
-<body>
-	<label for="ssn">ssn:</label>
-	<input id="ssn" type="text"/><br><br>
-	
-	<label for="result">Result:</label>
-	<span id="result"></span><br><br>
-	
-	<button id="retrieve-btn">RETRIEVE</button><br><br>
-	<button id="back">BACK</button><br><br>
-	
-	<script type="text/javascript">		
-		var retrieveBtn = document.getElementById('retrieve-btn');
-		retrieveBtn.addEventListener('click', retrieveItem);
-
-		var text = '{ "patient" : [' +
-			'{"ssn": "1", "phoneno": "123", "dob": "01/01/1999", "gender": "Male", "name": "A"},' +
-			'{"ssn": "2", "phoneno": "456", "dob": "11/05/2000", "gender": "Female", "name": "B"},' +
-			'{"ssn": "3", "phoneno": "789", "dob": "19/05/2000", "gender": "Male","name": "C"}]}'; 
-
-		function retrieveItem(){
-			var ssn = document.getElementById("ssn");
-			var ssnValue = ssn.value;
-			var patientObj = JSON.parse(text);
-
-			for (i = 0; i < 3; i++) {
-				if (patientObj.patient[i].ssn == ssnValue) {
-					document.getElementById("result").innerHTML = "ssn: " + patientObj.patient[i].ssn + " phoneno: " + patientObj.patient[i].phoneno
-					+ " dob: " + patientObj.patient[i].dob + " gender: " + patientObj.patient[i].gender + " name: " + patientObj.patient[i].name;
+				for (i = 0; i < 3; i++) {
+					if (patientObj.patient[i].ssn == ssnValue) {
+						document.getElementById("result").innerHTML = 
+							"ssn: " + patientObj.patient[i].ssn 
+							+ " phoneno: " + patientObj.patient[i].phoneno
+							+ " dob: " + patientObj.patient[i].dob 
+							+ " gender: " + patientObj.patient[i].gender 
+							+ " name: " + patientObj.patient[i].name;
+					}
 				}
 			}
-		}
 
-   		document.getElementById("back").onclick = function () {
-        	location.href = "index.html";
-   		};
-	</script>
-</body>
-</html>
-	</script>
-</body>
+				document.getElementById("back").onclick = function () {
+						location.href = "index.html";
+				};
+		</script>
+		<form action="url_to_send_data" method="post">
+			<fieldset>
+				<div>
+					<label for="ssn">Social Security number:<span>*</span></label>
+					<input id="ssn" type="text" name="ssn" required/>
+				</div>
+				<div>
+					<label for="result">Result:</label>
+					<span id="result"></span>
+				</div>
+				<button id="back">BACK</button>
+				<button id="retrieve-btn">RETRIEVE</button>
+			</fieldset>
+		</form>
+	</body>
 </html>
