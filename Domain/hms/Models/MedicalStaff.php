@@ -181,15 +181,15 @@ class MedicalStaff extends Person
 
     public function get() {
         $person = parent::get();
-        $patient = [
+        $staff = [
             "id" => $this->getId(),
             "role" => $this->getRole(),
+            "specialty" => $this->getSpecialty(),
             "yearOfExperience" => $this->getYearOfExperience(),
             "assignedRoomNo" => $this->getAssignedRoom()->getNumber(),
-            "assignedRoomType" => $this->getAssignedRoom()->getType(),
-            "specialty" => $this->getSpecialty()
+            "assignedRoomType" => $this->getAssignedRoom()->getType()
         ];
-        return array_merge($person, $patient);
+        return array_merge($staff, $person);
     }
 
     public static function validate(array $fields): bool

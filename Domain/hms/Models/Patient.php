@@ -111,7 +111,7 @@ class Patient extends Person
             "id" => $this->getId(),
             "noOfVisits" => $this->getNoOfVisits()
         ];
-        return array_merge($person, $patient);
+        return array_merge($patient, $person);
     }
 
     public static function validate(array $fields): bool

@@ -267,7 +267,7 @@ class Visit
             "checkIn" => $this->getCheckIn(),
             "checkOut" => 'no check out yet',
             "ByPatient" => $this->getByPatient()->getId(),
-            "RequestedService" => 'no service requested yet'
+            "requestedService" => 'no service requested yet'
         ];
         if ($this->getPrescription())
             $result["prescriptionID"] = $this->getPrescription()->getId();
