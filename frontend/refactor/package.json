@@ -1,0 +1,22 @@
+{
+  "name": "hms-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch --output-style expanded src/scss/app.scss --output dist/styles/",
+    "watch-scss": "watch \"npm run scss\" dist/styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tidunguyen/Hospital-Management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tidunguyen/Hospital-Management/issues"
+  },
+  "homepage": "https://github.com/tidunguyen/Hospital-Management#readme"
+}

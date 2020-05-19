@@ -1,0 +1,15 @@
+{
+  "ssn":"774-23-0561",
+  "name":"TestNurse",
+  "gender":"Male",
+  "dob":"1982-10-01",
+  "phone":"(447) 9458136",
+  "role":"Nurse",
+  "yearOfExperience":4,
+  "assignedRoom": {
+    "number": 5,
+    "type": "ICU"
+  },
+  "specialty":"Anaesthetics",
+  "prescriptions": [1, 2, 3, 4, 5, 6]
+}

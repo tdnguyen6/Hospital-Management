@@ -1,0 +1,177 @@
+<<<<<<< HEAD
+@import url("adminPanel");
+@import url("dataTable");
+@import url("topPanel");
+=======
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+#app #loading h3 {
+  margin-top: 10rem;
+  text-align: center;
+}
+
+#app #data, #app #add-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Zebra striping */
+}
+
+#app #data tr:nth-of-type(odd), #app #add-table tr:nth-of-type(odd) {
+  background: #ddd;
+}
+
+#app #data th, #app #add-table th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+#app #data td,
+#app #data th, #app #add-table td,
+#app #add-table th {
+  padding: 6px;
+  border: 1px solid #aaa;
+  text-align: left;
+}
+
+#app #data td:empty::after, #app #add-table td:empty::after {
+  content: "\00a0";
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  #app #data, #app #add-table {
+    /* Force table to not be like tables anymore */
+    /* Hide table headers (but not display: none;, for accessibility) */
+  }
+  #app #data table,
+  #app #data thead,
+  #app #data tbody,
+  #app #data th,
+  #app #data td,
+  #app #data tr, #app #add-table table,
+  #app #add-table thead,
+  #app #add-table tbody,
+  #app #add-table th,
+  #app #add-table td,
+  #app #add-table tr {
+    display: block;
+  }
+  #app #data thead tr, #app #add-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  #app #data tr, #app #add-table tr {
+    border: 1px solid #aaa;
+  }
+  #app #data td, #app #add-table td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #bbb;
+    position: relative;
+    padding-left: 50%;
+  }
+  #app #data td:before, #app #add-table td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}
+
+#app #pagination {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#app #pagination button {
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 3px solid darkslategrey;
+  background: cadetblue;
+}
+
+#app #pagination button:hover {
+  background: cornflowerblue;
+}
+
+#app #pagination button:active {
+  background: darkcyan;
+}
+
+#app #info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#app #adminFunctions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@keyframes spinner-line-fade-more {
+  0%, 100% {
+    opacity: 0;
+    /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-fade-quick {
+  0%, 39%, 100% {
+    opacity: 0.25;
+    /* minimum opacity */
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-fade-default {
+  0%, 100% {
+    opacity: 0.22;
+    /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-shrink {
+  0%, 25%, 100% {
+    /* minimum scale and opacity */
+    transform: scale(0.5);
+    opacity: 0.25;
+  }
+  26% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.display-none {
+  display: none !important;
+}
+>>>>>>> a143642fd2d90301676f4b0d5e071e33bdba5a04

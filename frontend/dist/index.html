@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/app.css" />
+    <script defer type="module" src="js/app.js"></script>
+    <script defer src="https://kit.fontawesome.com/6aeb146ea7.js" crossorigin="anonymous"></script>
+    <title>Main App</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="topInfoPanel">
+            <p id="currentRecords"></p>
+            <div>
+                <button id="sorting" disabled>SORT <i class="far fa-play-circle"></i></button>
+                <button id="reset-sorting" disabled>RESET SORT <i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+        <div id="loading">
+            <h3>Be patient, fetching database ...</h3>
+        </div>
+        <table id="data"></table>
+        <div id="pagination"></div>
+        <hr id="panelSeparator">
+        <div id="adminFunctions">
+            <h1>
+                Admin Panel
+            </h1>
+            <table id="edit-delete-table">
+                <tr>
+                    <td>Edited IDs:</td>
+                    <td id="edited-id">none</td>
+                    <td>
+                        <button id="commitEditBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Deleted IDs:</td>
+                    <td id="deleted-id">none</td>
+                    <td>
+                        <button id="commitDelBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button id="addBtn">ADD <i class="fas fa-plus-square"></i></button>
+                <button id="commitAddBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
+            </div>
+            <table id="add-table"></table>
+        </div>
+    </div>
+</body>
+
+</html>
