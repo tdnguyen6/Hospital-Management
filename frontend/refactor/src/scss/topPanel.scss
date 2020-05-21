@@ -4,4 +4,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+
+    #pagination-option {
+        #pagination-input {
+            width: 2rem;
+            text-align: center;
+        }
+    }
 }

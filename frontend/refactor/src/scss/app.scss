@@ -5,6 +5,12 @@
   font-family: "Roboto", sans-serif;
 }
 
-@import url("adminPanel");
-@import url("dataTable");
-@import url("topPanel");
+.display-none {
+  display: none !important;
+}
+
+@import "adminPanel";
+@import "dataTable";
+@import "topPanel";
+@import "pagination";
+@import "loading";

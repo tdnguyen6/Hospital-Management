@@ -145,7 +145,6 @@ function fillTableRow(datas, row, firstTime = false, isHeader = false) {
         let col;
         if (firstTime) {
             col = document.createElement(elementType);
-            // col.style.width = "min-content";
             row.appendChild(col);
         } else col = row.children[datas.indexOf(data)];
         col.innerHTML = data;

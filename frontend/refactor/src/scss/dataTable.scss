@@ -1,4 +1,4 @@
-#app #dataTable {
+#app .dataTable {
   width: 100%;
   border-collapse: collapse;
 
@@ -6,13 +6,25 @@
   tr:nth-of-type(odd) {
     background: #ddd;
   }
-  th {
+  thead th {
     background: #333;
     color: white;
     font-weight: bold;
+
+    .rootDiv {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      .innerDiv {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
+
   td,
-  th {
+  thead th {
     padding: 6px;
     border: 1px solid #aaa;
     text-align: left;
@@ -20,6 +32,25 @@
 
   td:empty::after {
     content: "\00a0";
+  }
+
+  .manip-col {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .deleted {
+    background: crimson !important;
+  }
+  
+  .editing {
+    background: khaki !important;
+  }
+  
+  .saved {
+    background: lawngreen !important;
   }
 
   @media only screen and (max-width: 760px),
@@ -35,11 +66,11 @@
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
-    thead tr {
+    /* thead tr {
       position: absolute;
       top: -9999px;
       left: -9999px;
-    }
+    } */
 
     tr {
       border: 1px solid #aaa;
