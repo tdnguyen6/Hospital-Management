@@ -1,0 +1,101 @@
+#app .dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  /* Zebra striping */
+}
+
+#app .dataTable tr:nth-of-type(odd) {
+  background: #ddd;
+}
+
+#app .dataTable thead th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+#app .dataTable thead th .rootDiv {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#app .dataTable thead th .rootDiv .innerDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+#app .dataTable td,
+#app .dataTable thead th {
+  padding: 6px;
+  border: 1px solid #aaa;
+  text-align: left;
+}
+
+#app .dataTable td:empty::after {
+  content: "\00a0";
+}
+
+#app .dataTable .manip-col {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#app .dataTable .deleted {
+  background: crimson !important;
+}
+
+#app .dataTable .editing {
+  background: khaki !important;
+}
+
+#app .dataTable .saved {
+  background: lawngreen !important;
+}
+
+#app .dataTable .sortDir {
+  background: firebrick;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  #app .dataTable {
+    /* Force table to not be like tables anymore */
+    /* Hide table headers (but not display: none;, for accessibility) */
+    /* thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    } */
+  }
+  #app .dataTable table,
+  #app .dataTable thead,
+  #app .dataTable tbody,
+  #app .dataTable th,
+  #app .dataTable td,
+  #app .dataTable tr {
+    display: block;
+  }
+  #app .dataTable tr {
+    border: 1px solid #aaa;
+  }
+  #app .dataTable td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #bbb;
+    position: relative;
+    padding-left: 50%;
+  }
+  #app .dataTable td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}

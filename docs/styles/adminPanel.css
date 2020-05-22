@@ -1,0 +1,22 @@
+#app #adminPanel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#app #adminPanel hr {
+  width: 100%;
+}
+
+#app #adminPanel h1 {
+  margin: 2rem;
+}
+
+#app #adminPanel #edit-delete-table {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}

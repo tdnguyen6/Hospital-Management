@@ -1,0 +1,55 @@
+.top-menu {
+  height: 70px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.118) 0px 1px 3px 0px;
+}
+
+header .user-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(0, 123, 225);
+}
+
+section {
+  padding: 50px 100px 20px 100px;
+}
+
+.not-menu {
+
+}
+
+.hospital-detail {
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+}
+
+a .user {
+  padding: 50px 50px 50px 50px;
+}
+
+a:not(.btn) {
+  text-decoration: none;
+}
+
+div .user-wrapper {
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.118) 0px 1px 3px 0px;
+  border-radius: 20px;
+  padding-left: 100px;
+  padding-right: 70px;
+  transition: transform .2s;
+}
+
+.user-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.user-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.user-name {
+  color: rgb(0, 123, 255);
+}

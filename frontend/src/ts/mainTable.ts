@@ -290,7 +290,7 @@ export class MainTable {
 
   static reset() {
     for (let i = 0; i < MainTable.table.childElementCount; i++) {
-      MainTable.table.children[i].remove();
+      this.table.children[i].remove();
     }
   }
 }

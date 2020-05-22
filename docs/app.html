@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="styles/app-nav.css" />
+    <link rel="stylesheet" href="styles/app.css" />
+    <script defer type="module" src="js/app.js"></script>
+    <script
+      defer
+      src="https://kit.fontawesome.com/6aeb146ea7.js"
+      crossorigin="anonymous"
+    ></script>
+    <style id="responsive-header-main"></style>
+    <style id="responsive-header-add"></style>
+    <title>Hospital's <span class="role"></span></title>
+  </head>
+  <body>
+    <header class="top-menu">
+      <div class="h-100 container d-flex justify-content-between">
+        <a class="d-flex align-items-center user-name" href="index.html"
+          ><span class="role"></span></a
+        >
+
+        <a class="d-flex align-items-center" href="#">Medical Service</a>
+        <a class="d-flex align-items-center" href="#">Medical Staff</a>
+        <a class="d-flex align-items-center" href="#">Medicine</a>
+        <a class="d-flex align-items-center" href="#">Patient</a>
+        <a class="d-flex align-items-center" href="#">Prescription</a>
+        <a class="d-flex align-items-center" href="#">Prescription Medicine</a>
+        <a class="d-flex align-items-center" href="#">Room</a>
+        <a class="d-flex align-items-center" href="#">Visit</a>
+        <a
+          class="d-flex align-items-center"
+          href="https://github.com/tidunguyen/Hospital-Management"
+          target="_blank"
+          ><i class="fab fa-github fa-3x"></i
+        ></a>
+      </div>
+    </header>
+
+    <div id="app">
+      <div id="loading"></div>
+      <div id="topPanel">
+        <div id="pagination-option">
+          Shows <input type="text" id="pagination-input" value="10" /> records
+          per page
+        </div>
+        <div>
+          <button id="run">RUN <i class="far fa-play-circle"></i></button>
+          <button id="reset">RESET <i class="fas fa-sync-alt"></i></button>
+        </div>
+      </div>
+      <table class="dataTable" id="main-table"></table>
+      <div id="pagination"></div>
+      <div id="adminPanel">
+        <hr />
+        <h1>
+          Admin Panel
+        </h1>
+        <table id="edit-delete-table">
+          <tr>
+            <td>Edited IDs:</td>
+            <td id="edited-id"></td>
+            <td>
+              <button id="commitEditBtn">
+                COMMIT <i class="fas fa-cloud-upload-alt"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Deleted IDs:</td>
+            <td id="deleted-id"></td>
+            <td>
+              <button id="commitDelBtn">
+                COMMIT <i class="fas fa-cloud-upload-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <button id="addBtn">ADD <i class="fas fa-plus-square"></i></button>
+          <button id="commitAddBtn">
+            COMMIT <i class="fas fa-cloud-upload-alt"></i>
+          </button>
+        </div>
+        <table class="dataTable" id="add-table"></table>
+      </div>
+    </div>
+  </body>
+</html>

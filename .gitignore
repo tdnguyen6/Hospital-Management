@@ -1,8 +1,0 @@
-# database files
-## sqlite
-**/*.sqlite
-## sqlserver
-**/*.bak
-
-## vendor
-vendor
