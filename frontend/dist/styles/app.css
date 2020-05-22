@@ -4,92 +4,124 @@
   font-family: "Roboto", sans-serif;
 }
 
-/* 
-Generic Styling, for Desktops/Laptops 
-*/
-#app #topInfoPanel {
+.display-none {
+  display: none !important;
+}
+
+#app #adminPanel {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
-#app #loading h3 {
-  margin-top: 10rem;
-  text-align: center;
+#app #adminPanel hr {
+  width: 100%;
 }
 
-#app .sort-btn-div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+#app #adminPanel h1 {
+  margin: 2rem;
 }
 
-#app #data, #app #add-table {
+#app #adminPanel #edit-delete-table {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+#app .dataTable {
   width: 100%;
   border-collapse: collapse;
   /* Zebra striping */
 }
 
-#app #data tr:nth-of-type(odd), #app #add-table tr:nth-of-type(odd) {
+#app .dataTable tr:nth-of-type(odd) {
   background: #ddd;
 }
 
-#app #data th, #app #add-table th {
+#app .dataTable thead th {
   background: #333;
   color: white;
   font-weight: bold;
 }
 
-#app #data td,
-#app #data th, #app #add-table td,
-#app #add-table th {
+#app .dataTable thead th .rootDiv {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#app .dataTable thead th .rootDiv .innerDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+#app .dataTable td,
+#app .dataTable thead th {
   padding: 6px;
   border: 1px solid #aaa;
   text-align: left;
 }
 
-#app #data td:empty::after, #app #add-table td:empty::after {
+#app .dataTable td:empty::after {
   content: "\00a0";
 }
 
+#app .dataTable .manip-col {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#app .dataTable .deleted {
+  background: crimson !important;
+}
+
+#app .dataTable .editing {
+  background: khaki !important;
+}
+
+#app .dataTable .saved {
+  background: lawngreen !important;
+}
+
+#app .dataTable .sortDir {
+  background: firebrick;
+}
+
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-  #app #data, #app #add-table {
+  #app .dataTable {
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
+    /* thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    } */
   }
-  #app #data table,
-  #app #data thead,
-  #app #data tbody,
-  #app #data th,
-  #app #data td,
-  #app #data tr, #app #add-table table,
-  #app #add-table thead,
-  #app #add-table tbody,
-  #app #add-table th,
-  #app #add-table td,
-  #app #add-table tr {
+  #app .dataTable table,
+  #app .dataTable thead,
+  #app .dataTable tbody,
+  #app .dataTable th,
+  #app .dataTable td,
+  #app .dataTable tr {
     display: block;
   }
-  #app #data thead tr, #app #add-table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  #app #data tr, #app #add-table tr {
+  #app .dataTable tr {
     border: 1px solid #aaa;
   }
-  #app #data td, #app #add-table td {
+  #app .dataTable td {
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #bbb;
     position: relative;
     padding-left: 50%;
   }
-  #app #data td:before, #app #add-table td:before {
+  #app .dataTable td:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
@@ -99,6 +131,19 @@ Generic Styling, for Desktops/Laptops
     padding-right: 10px;
     white-space: nowrap;
   }
+}
+
+#app #topPanel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app #topPanel #pagination-option #pagination-input {
+  width: 2rem;
+  text-align: center;
 }
 
 #app #pagination {
@@ -122,33 +167,6 @@ Generic Styling, for Desktops/Laptops
 
 #app #pagination button:active {
   background: darkcyan;
-}
-
-#app #info {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap-reverse;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-#app #adminFunctions {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-#app #adminFunctions h1 {
-  margin: 2rem;
-}
-
-#app #adminFunctions #edit-delete-table {
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid black;
-  border-radius: 1rem;
 }
 
 @keyframes spinner-line-fade-more {
@@ -191,8 +209,4 @@ Generic Styling, for Desktops/Laptops
     transform: scale(1);
     opacity: 1;
   }
-}
-
-.display-none {
-  display: none !important;
 }

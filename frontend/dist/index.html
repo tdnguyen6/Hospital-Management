@@ -4,42 +4,43 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/app.css" />
-    <script defer type="module" src="./js/app.js"></script>
+    <link rel="stylesheet" href="styles/app.css" />
+    <script defer type="module" src="js/app.js"></script>
     <script defer src="https://kit.fontawesome.com/6aeb146ea7.js" crossorigin="anonymous"></script>
+    <style id="responsive-header-main"></style>
+    <style id="responsive-header-add"></style>
     <title>Main App</title>
 </head>
 
 <body>
     <div id="app">
-        <div id="topInfoPanel">
-            <p id="currentRecords"></p>
+        <div id="loading"></div>
+        <div id="topPanel">
+            <div id="pagination-option">Shows <input type="text" id="pagination-input" value="10"> records per page</div>
             <div>
-                <button id="sorting" disabled>SORT <i class="far fa-play-circle"></i></button>
-                <button id="reset-sorting" disabled>RESET SORT <i class="fas fa-redo"></i></button>
+                <button id="run">RUN <i class="far fa-play-circle"></i></button>
+                <button id="reset">RESET <i class="fas fa-sync-alt"></i></button>
             </div>
         </div>
-        <div id="loading">
-            <h3>Be patient, fetching database ...</h3>
-        </div>
-        <table id="data"></table>
+        <table class="dataTable" id="main-table">
+        </table>
         <div id="pagination"></div>
-        <hr id="panelSeparator">
-        <div id="adminFunctions">
+        <div id="adminPanel">
+            <hr>
             <h1>
                 Admin Panel
             </h1>
             <table id="edit-delete-table">
                 <tr>
                     <td>Edited IDs:</td>
-                    <td id="edited-id">none</td>
+                    <td id="edited-id"></td>
                     <td>
                         <button id="commitEditBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
                     </td>
                 </tr>
                 <tr>
                     <td>Deleted IDs:</td>
-                    <td id="deleted-id">none</td>
+                    <td id="deleted-id"></td>
                     <td>
                         <button id="commitDelBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
                     </td>
@@ -49,7 +50,8 @@
                 <button id="addBtn">ADD <i class="fas fa-plus-square"></i></button>
                 <button id="commitAddBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
             </div>
-            <table id="add-table"></table>
+            <table class="dataTable" id="add-table">
+            </table>
         </div>
     </div>
 </body>
