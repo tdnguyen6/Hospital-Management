@@ -11,5 +11,8 @@ return function (Response $response, String $message = 'Not found', int $rows = 
     ];
 
     $response->getBody()->write(json_encode($responseString));
-    return $response->withStatus($status)->withHeader('Content-Type', 'application/json')->withHeader('Access-Control-Allow-Origin', '*');;
+    return $response->withStatus($status)
+        ->withHeader('Content-Type', 'application/json')
+        ->withHeader('Access-Control-Allow-Origin', '*');
+        // ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 };

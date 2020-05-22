@@ -1,20 +1,26 @@
 import { Spinner } from "./spin.js";
+import { DAO } from "./dataAccess.js";
 export class Helper {
   static keepDiffereces(
     originalContent: { [key: string]: any },
-    newContent: { [key: string]: any }
+    newContent: { [key: string]: any },
+    dao: DAO
   ): { [key: string]: any } {
     if (Object.keys(originalContent).length != Object.keys(newContent).length)
       return {};
     let res: { [key: string]: any } = {};
     let keys: string[] = Object.keys(originalContent);
-    res["id"] = this.sanitize(originalContent["id"]);
-    for (let i = 1; i < keys.length; i++) {
+    dao.keys.forEach((key) => {
+      res[key] = this.sanitize(originalContent[key]);
+    });
+    for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
-      let a: string = this.sanitize(originalContent[key]);
-      let b: string = this.sanitize(newContent[key]);
-      if (a !== b) {
-        res[key] = b;
+      if (!dao.keys.includes(key)) {
+        let a: string = this.sanitize(originalContent[key]);
+        let b: string = this.sanitize(newContent[key]);
+        if (a != b) {
+          res[key] = b;
+        }
       }
     }
     return res;
@@ -42,22 +48,27 @@ export class Helper {
     }
   }
 
-  static tableToJSON(table: HTMLElement, fromRow: number, numOfRows: number) {
+  static tableToJSON(
+    table: HTMLElement,
+    fromRow: number = 0,
+    toRow: number = -1
+  ): { [key: string]: any }[] {
     let result: { [key: string]: any }[] = [];
     let headers: string[] = [];
 
     let thead: HTMLElement = <HTMLElement>table.children[0];
     Array.from(thead.children[0].children).forEach((child) => {
-      headers.push((<HTMLElement>child).innerText);
+      headers.push(this.sanitize((<HTMLElement>child).innerText));
     });
 
     let tbody: HTMLElement = <HTMLElement>table.children[1];
+    if (toRow < 0) toRow = tbody.childElementCount - 1;
 
-    for (let i = fromRow; i < fromRow + numOfRows; i++) {
+    for (let i = fromRow; i <= toRow; i++) {
       let obj: { [key: string]: any } = {};
       let cols: HTMLCollection = <HTMLCollection>tbody.children[i].children;
       for (let j = 0; j < cols.length; j++) {
-        obj[headers[j]] = (<HTMLElement>cols[j]).innerText;
+        obj[headers[j]] = this.sanitize((<HTMLElement>cols[j]).innerText);
       }
       result.push(obj);
     }
@@ -70,8 +81,27 @@ export class Helper {
     return wrap.innerHTML;
   }
 
-  static sanitize(dirtyString: string) {
-    return dirtyString.toString().replace(/(\r\n|\n|\r)/gm, "").trim();
+  static sanitize(dirt: any) {
+    if (dirt === "false" || dirt === "true") {
+      return +(dirt === "true");
+    } else if (isNaN(dirt)) {
+      return dirt
+        .toString()
+        .replace(/(\r\n|\n|\r)/gm, "")
+        .trim();
+    } else {
+      return +dirt;
+    }
+  }
+
+  static matchKeys(keys: {}, content: {}) {
+    for (let i = 0; i < Object.keys(keys).length; i++) {
+      let key = Object.keys(keys)[i];
+      if (content[key] != keys[key]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   static startLoading() {
@@ -127,5 +157,22 @@ export class Helper {
     };
 
     var spinner = new Spinner(opts).spin(element);
+  }
+
+  static fillOneRow(content: string[], row: HTMLElement, type: string = "td") {
+    Helper.dynamicResize(content.length, row, type);
+
+    for (let i = 0; i < content.length; i++) {
+      let col: HTMLElement = <HTMLElement>row.children[i];
+      col.innerHTML = content[i];
+    }
+  }
+
+  static ObjArrToString(ObjArr: {}[], joinChar = ";"): string {
+    return ObjArr.map((e) => Object.values(e)).join(joinChar);
+  }
+
+  static capFirst(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
   }
 }

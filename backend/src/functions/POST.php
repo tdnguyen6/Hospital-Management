@@ -20,7 +20,7 @@ return function (Request $request, Response $response, String $database, String 
         $obj = new $table();
         $obj->setEntityManager($entityManager);
         foreach ($newObjFields as $newObjKey=>$newObjFieldValue) {
-            $setter = "set$newObjKey";
+            $setter = "set". ucfirst($newObjKey);
             $obj->$setter($newObjFieldValue);
         }
         $entityManager->persist($obj);

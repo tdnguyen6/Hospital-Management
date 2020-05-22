@@ -261,16 +261,16 @@ class Visit
     public function get() {
         $result = [
             "id" => $this->getId(),
-            "prescriptionID" => 'no prescription yet',
+            "prescription" => 'no prescription yet',
             "totalCost" => $this->getPayMethod(),
-            "paidStatus" => $this->getPaid(),
+            "paid" => $this->getPaid(),
             "checkIn" => $this->getCheckIn(),
             "checkOut" => 'no check out yet',
-            "ByPatient" => $this->getByPatient()->getId(),
+            "byPatient" => $this->getByPatient()->getId(),
             "requestedService" => 'no service requested yet'
         ];
         if ($this->getPrescription())
-            $result["prescriptionID"] = $this->getPrescription()->getId();
+            $result["prescription"] = $this->getPrescription()->getId();
         if ($this->getCheckOut())
             $result["checkOut"] = $this->getCheckOut();
         if ($this->getRequestedService())

@@ -1,7 +1,7 @@
 import { Helper } from "./helper.js";
 import { AdminPanel } from "./adminPanel.js";
-let DataTable = /** @class */ (() => {
-    class DataTable {
+let MainTable = /** @class */ (() => {
+    class MainTable {
         static display(dao) {
             this.dao = dao;
             this.reset();
@@ -10,10 +10,10 @@ let DataTable = /** @class */ (() => {
         }
         static displayHeaders() {
             let thead = document.createElement("thead");
-            DataTable.table.appendChild(thead);
+            MainTable.table.appendChild(thead);
             let row = document.createElement("tr");
             thead.appendChild(row);
-            this.fillOneRow(this.dao.getHeaders(), row, "th");
+            Helper.fillOneRow(this.dao.getHeaders(), row, "th");
             this.queryFunctions();
             if (Helper.isAdmin()) {
                 let operationHeader = document.createElement("th");
@@ -22,7 +22,7 @@ let DataTable = /** @class */ (() => {
             }
         }
         static manipFunctions() {
-            let tbody = DataTable.table.children[1];
+            let tbody = MainTable.table.children[1];
             for (let i = 0; i < tbody.childElementCount; i++) {
                 let row = tbody.children[i];
                 let manipCol = document.createElement("td");
@@ -44,34 +44,45 @@ let DataTable = /** @class */ (() => {
                 undo.innerHTML = "UNDO " + '<i class="fas fa-undo"></i>';
                 firstBtnDiv.appendChild(edit);
                 secondBtnDiv.appendChild(del);
-                let id = row.children[0].innerHTML;
+                let keys = {};
+                this.dao.getKeysIndex().forEach((i) => {
+                    keys[this.dao.getHeaders()[i]] = Helper.sanitize(row.children[i].innerHTML);
+                });
                 edit.onclick = () => {
                     firstBtnDiv.removeChild(edit);
                     firstBtnDiv.appendChild(save);
                     row.contentEditable = "true";
-                    row.children[0].contentEditable = "false";
-                    if (!DataTable.dao.editingIDs.includes(parseInt(id))) {
-                        DataTable.dao.editingIDs.push(parseInt(id));
-                        if (DataTable.dao.getSavedIDs().includes(parseInt(id))) {
-                            DataTable.dao.editedContent = DataTable.dao.editedContent.filter((content) => content.id != id);
+                    this.dao.getKeysIndex().forEach((i) => {
+                        row.children[i].contentEditable = "false";
+                    });
+                    if (!MainTable.dao.editingIDs
+                        .map((s) => JSON.stringify(s))
+                        .some((s) => s == JSON.stringify(keys))) {
+                        MainTable.dao.editingIDs.push(keys);
+                        if (MainTable.dao
+                            .getSavedIDs()
+                            .map((s) => JSON.stringify(s))
+                            .some((s) => s == JSON.stringify(keys))) {
+                            MainTable.dao.editedContent = MainTable.dao.editedContent.filter((content) => !Helper.matchKeys(keys, content));
                         }
                         AdminPanel.refresh();
                         AdminPanel.supervise();
+                        console.log(this.dao.editedContent);
                     }
                 };
                 save.onclick = () => {
                     firstBtnDiv.removeChild(save);
                     firstBtnDiv.appendChild(edit);
                     row.contentEditable = "false";
-                    let index = DataTable.dao.editingIDs.indexOf(parseInt(id));
+                    let index = MainTable.dao.editingIDs.indexOf(keys);
                     if (index >= 0) {
-                        DataTable.dao.editingIDs.splice(index, 1);
-                        let newContent = Helper.tableToJSON(DataTable.table, i, 1)[0];
+                        MainTable.dao.editingIDs.splice(index, 1);
+                        let newContent = Helper.tableToJSON(MainTable.table, i, i)[0];
                         delete newContent["Operations"];
                         AdminPanel.addEditedContent(Helper.keepDiffereces(this.dao.getData().find((data) => {
-                            if (data["id"] == id)
+                            if (Helper.matchKeys(keys, data))
                                 return data;
-                        }), newContent));
+                        }), newContent, this.dao), this.dao);
                         AdminPanel.refresh();
                         AdminPanel.supervise();
                         console.log(this.dao.editedContent);
@@ -80,8 +91,10 @@ let DataTable = /** @class */ (() => {
                 del.onclick = () => {
                     secondBtnDiv.removeChild(del);
                     secondBtnDiv.appendChild(undo);
-                    if (!this.dao.deletedIDs.includes(parseInt(id))) {
-                        this.dao.deletedIDs.push(parseInt(id));
+                    if (!this.dao.deletedIDs
+                        .map((s) => JSON.stringify(s))
+                        .some((s) => s == JSON.stringify(keys))) {
+                        this.dao.deletedIDs.push(keys);
                         AdminPanel.refresh();
                         AdminPanel.supervise();
                     }
@@ -89,7 +102,7 @@ let DataTable = /** @class */ (() => {
                 undo.onclick = () => {
                     secondBtnDiv.removeChild(undo);
                     secondBtnDiv.appendChild(del);
-                    let index = this.dao.deletedIDs.indexOf(parseInt(id));
+                    let index = this.dao.deletedIDs.indexOf(keys);
                     if (index >= 0) {
                         this.dao.deletedIDs.splice(index, 1);
                         AdminPanel.refresh();
@@ -99,65 +112,80 @@ let DataTable = /** @class */ (() => {
             }
         }
         static queryFunctions() {
-            let headerRow = DataTable.table.children[0].children[0];
+            let headerRow = MainTable.table.children[0].children[0];
             Array.from(headerRow.children).forEach((child) => {
-                child.innerHTML = "";
-                let rootDiv = document.createElement("div");
-                rootDiv.classList.add("rootDiv");
-                let sortUpBtn = document.createElement("button");
-                sortUpBtn.innerHTML = '<i class="fas fa-sort-up"></i>';
-                let sortDownBtn = document.createElement("button");
-                sortDownBtn.innerHTML = '<i class="fas fa-sort-down"></i>';
-                let sortDiv = document.createElement("div");
-                sortDiv.classList.add("innerDiv");
-                let searchBtn = document.createElement("button");
-                searchBtn.innerHTML = '<i class="fab fa-searchengin"></i>';
-                let searchDiv = document.createElement("div");
-                searchDiv.classList.add("innerDiv");
-                searchDiv.innerHTML = this.dao.getHeaders()[Array.from(headerRow.children).indexOf(child)];
-                let searchBtnDiv = document.createElement("div");
-                searchBtnDiv.appendChild(searchBtn);
-                searchDiv.appendChild(searchBtnDiv);
-                sortDiv.appendChild(sortUpBtn);
-                sortDiv.appendChild(sortDownBtn);
-                rootDiv.appendChild(searchDiv);
-                rootDiv.appendChild(sortDiv);
-                child.appendChild(rootDiv);
-                sortUpBtn.onclick = () => {
-                    sortDownBtn.disabled = true;
-                };
-                sortDownBtn.onclick = () => {
-                    sortUpBtn.disabled = true;
-                };
-                let searchInput = document.createElement("input");
-                searchInput.type = "text";
-                searchInput.onblur = () => {
-                    if (Array.from(searchBtnDiv.children).includes(searchInput) &&
-                        searchInput.value === "") {
-                        searchBtnDiv.removeChild(searchInput);
-                        searchBtnDiv.appendChild(searchBtn);
-                    }
-                };
-                searchBtn.onclick = () => {
-                    if (Array.from(searchBtnDiv.children).includes(searchBtn)) {
-                        searchBtnDiv.removeChild(searchBtn);
-                        searchBtnDiv.appendChild(searchInput);
-                        searchInput.focus();
-                    }
-                };
+                if (Array.from(headerRow.children).indexOf(child) <
+                    this.dao.getHeaders().length) {
+                    child.innerHTML = "";
+                    let rootDiv = document.createElement("div");
+                    rootDiv.classList.add("rootDiv");
+                    let sortUpBtn = document.createElement("button");
+                    sortUpBtn.innerHTML = '<i class="fas fa-sort-up"></i>';
+                    let sortDownBtn = document.createElement("button");
+                    sortDownBtn.innerHTML = '<i class="fas fa-sort-down"></i>';
+                    let sortDiv = document.createElement("div");
+                    sortDiv.classList.add("innerDiv");
+                    let searchBtn = document.createElement("button");
+                    searchBtn.innerHTML = '<i class="fab fa-searchengin"></i>';
+                    let searchDiv = document.createElement("div");
+                    searchDiv.classList.add("innerDiv");
+                    searchDiv.innerHTML = this.dao.getHeaders()[Array.from(headerRow.children).indexOf(child)];
+                    let searchBtnDiv = document.createElement("div");
+                    searchBtnDiv.appendChild(searchBtn);
+                    searchDiv.appendChild(searchBtnDiv);
+                    sortDiv.appendChild(sortUpBtn);
+                    sortDiv.appendChild(sortDownBtn);
+                    rootDiv.appendChild(searchDiv);
+                    rootDiv.appendChild(sortDiv);
+                    child.appendChild(rootDiv);
+                    sortUpBtn.onclick = () => {
+                        if (sortUpBtn.classList.contains("sortDir")) {
+                            sortUpBtn.classList.remove("sortDir");
+                        }
+                        else {
+                            sortUpBtn.classList.add("sortDir");
+                            sortDownBtn.classList.remove("sortDir");
+                        }
+                    };
+                    sortDownBtn.onclick = () => {
+                        if (sortDownBtn.classList.contains("sortDir")) {
+                            sortDownBtn.classList.remove("sortDir");
+                        }
+                        else {
+                            sortDownBtn.classList.add("sortDir");
+                            sortUpBtn.classList.remove("sortDir");
+                        }
+                    };
+                    let searchInput = document.createElement("input");
+                    searchInput.type = "text";
+                    searchInput.onblur = () => {
+                        if (Array.from(searchBtnDiv.children).includes(searchInput) &&
+                            searchInput.value === "") {
+                            searchBtnDiv.removeChild(searchInput);
+                            searchBtnDiv.appendChild(searchBtn);
+                        }
+                    };
+                    searchBtn.onclick = () => {
+                        if (Array.from(searchBtnDiv.children).includes(searchBtn)) {
+                            searchBtnDiv.removeChild(searchBtn);
+                            searchBtnDiv.appendChild(searchInput);
+                            searchInput.focus();
+                        }
+                    };
+                }
             });
         }
         static displayContent(datas, start, end) {
-            let tbody = DataTable.table.children[1];
+            let tbody = MainTable.table.children[1];
             if (tbody == null) {
                 tbody = document.createElement("tbody");
-                DataTable.table.appendChild(tbody);
+                MainTable.table.appendChild(tbody);
             }
             let num = end - start + 1;
             Helper.dynamicResize(num, tbody, "tr");
             for (let i = 0; i < num; i++) {
                 let dataContent = Object.values(datas[i + start]);
-                this.fillOneRow(dataContent, tbody.children[i]);
+                Helper.fillOneRow(dataContent, tbody.children[i]);
             }
         }
         static displayContentWithPagination() {
@@ -185,34 +213,27 @@ let DataTable = /** @class */ (() => {
             this.responsiveHeaders();
         }
         static responsiveHeaders() {
-            let style = (document.getElementById("responsive-header"));
+            let style = (document.getElementById("responsive-header-main"));
             let styleSheet = style.sheet;
             for (let i = 0; i < styleSheet.cssRules.length; i++) {
                 styleSheet.deleteRule(i);
             }
             let rule = "@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)  {";
             for (let i = 0; i < this.dao.getHeaders().length; i++) {
-                rule += `.dataTable #main td:nth-of-type(${i + 1}):before { content: "${this.dao.getHeaders()[i]}"; }\n`;
+                rule += `#main-table td:nth-of-type(${i + 1}):before { content: "${this.dao.getHeaders()[i]}"; }\n`;
             }
             if (Helper.isAdmin())
-                rule += `.dataTable td:nth-of-type(${this.dao.getHeaders().length + 1}):before { content: "Operations"; }\n`;
+                rule += `#main-table td:nth-of-type(${this.dao.getHeaders().length + 1}):before { content: "Operations"; }\n`;
             rule += "}";
             styleSheet.insertRule(rule);
         }
-        static fillOneRow(content, row, type = "td") {
-            Helper.dynamicResize(content.length, row, type);
-            for (let i = 0; i < content.length; i++) {
-                let col = row.children[i];
-                col.innerHTML = content[i];
-            }
-        }
         static reset() {
-            for (let i = 0; i < DataTable.table.childElementCount; i++) {
-                DataTable.table.children[i].remove();
+            for (let i = 0; i < MainTable.table.childElementCount; i++) {
+                MainTable.table.children[i].remove();
             }
         }
     }
-    DataTable.table = (document.getElementsByClassName("dataTable")[0]);
-    return DataTable;
+    MainTable.table = (document.getElementById("main-table"));
+    return MainTable;
 })();
-export { DataTable };
+export { MainTable };

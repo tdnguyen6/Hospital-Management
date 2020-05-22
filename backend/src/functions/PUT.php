@@ -25,7 +25,7 @@ return function (Request $request, Response $response, string $database, string 
         }
         $obj->setEntityManager($entityManager);
         foreach ($newObjFields as $newObjKey => $newObjFieldValue) {
-            $setter = "set$newObjKey";
+            $setter = "set". ucfirst($newObjKey);
             $obj->$setter($newObjFieldValue);
         }
         $entityManager->flush();

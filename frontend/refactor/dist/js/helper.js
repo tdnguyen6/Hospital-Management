@@ -1,17 +1,21 @@
 import { Spinner } from "./spin.js";
 export class Helper {
-    static keepDiffereces(originalContent, newContent) {
+    static keepDiffereces(originalContent, newContent, dao) {
         if (Object.keys(originalContent).length != Object.keys(newContent).length)
             return {};
         let res = {};
         let keys = Object.keys(originalContent);
-        res["id"] = this.sanitize(originalContent["id"]);
-        for (let i = 1; i < keys.length; i++) {
+        dao.keys.forEach((key) => {
+            res[key] = this.sanitize(originalContent[key]);
+        });
+        for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
-            let a = this.sanitize(originalContent[key]);
-            let b = this.sanitize(newContent[key]);
-            if (a !== b) {
-                res[key] = b;
+            if (!dao.keys.includes(key)) {
+                let a = this.sanitize(originalContent[key]);
+                let b = this.sanitize(newContent[key]);
+                if (a != b) {
+                    res[key] = b;
+                }
             }
         }
         return res;
@@ -35,19 +39,21 @@ export class Helper {
             }
         }
     }
-    static tableToJSON(table, fromRow, numOfRows) {
+    static tableToJSON(table, fromRow = 0, toRow = -1) {
         let result = [];
         let headers = [];
         let thead = table.children[0];
         Array.from(thead.children[0].children).forEach((child) => {
-            headers.push(child.innerText);
+            headers.push(this.sanitize(child.innerText));
         });
         let tbody = table.children[1];
-        for (let i = fromRow; i < fromRow + numOfRows; i++) {
+        if (toRow < 0)
+            toRow = tbody.childElementCount - 1;
+        for (let i = fromRow; i <= toRow; i++) {
             let obj = {};
             let cols = tbody.children[i].children;
             for (let j = 0; j < cols.length; j++) {
-                obj[headers[j]] = cols[j].innerText;
+                obj[headers[j]] = this.sanitize(cols[j].innerText);
             }
             result.push(obj);
         }
@@ -58,8 +64,28 @@ export class Helper {
         wrap.appendChild(element.cloneNode(true));
         return wrap.innerHTML;
     }
-    static sanitize(dirtyString) {
-        return dirtyString.toString().replace(/(\r\n|\n|\r)/gm, "").trim();
+    static sanitize(dirt) {
+        if (dirt === "false" || dirt === "true") {
+            return +(dirt === "true");
+        }
+        else if (isNaN(dirt)) {
+            return dirt
+                .toString()
+                .replace(/(\r\n|\n|\r)/gm, "")
+                .trim();
+        }
+        else {
+            return +dirt;
+        }
+    }
+    static matchKeys(keys, content) {
+        for (let i = 0; i < Object.keys(keys).length; i++) {
+            let key = Object.keys(keys)[i];
+            if (content[key] != keys[key]) {
+                return false;
+            }
+        }
+        return true;
     }
     static startLoading() {
         let InvisibleStack = [];
@@ -113,5 +139,18 @@ export class Helper {
             position: "absolute",
         };
         var spinner = new Spinner(opts).spin(element);
+    }
+    static fillOneRow(content, row, type = "td") {
+        Helper.dynamicResize(content.length, row, type);
+        for (let i = 0; i < content.length; i++) {
+            let col = row.children[i];
+            col.innerHTML = content[i];
+        }
+    }
+    static ObjArrToString(ObjArr, joinChar = ";") {
+        return ObjArr.map((e) => Object.values(e)).join(joinChar);
+    }
+    static capFirst(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 }

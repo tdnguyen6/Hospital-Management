@@ -13,7 +13,11 @@ return function (Request $request, Response $response, string $database, string 
     $data = [];
     $failed = 0;
     foreach ($newObjs as $newObjFields) {
-        $obj = $entityManager->find("$table", $newObjFields['id']);
+        if ($table == "Room" || $table == "PrescriptionMedicine") {
+            $obj = $entityManager->find("$table", array_slice($newObjFields, 0, 2));
+        } else {
+            $obj = $entityManager->find("$table", array_slice($newObjFields, 0, 1));
+        }
         if (!$newObjFields['id'] || !$obj) {
             $failed += 1;
             continue;
@@ -21,7 +25,7 @@ return function (Request $request, Response $response, string $database, string 
         unset($newObjFields['id']);
         $obj->setEntityManager($entityManager);
         foreach ($newObjFields as $newObjKey => $newObjFieldValue) {
-            $setter = "set$newObjKey";
+            $setter = "set". ucfirst($newObjKey);
             $obj->$setter($newObjFieldValue);
         }
         $entityManager->flush();

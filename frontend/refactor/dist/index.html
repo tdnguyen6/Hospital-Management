@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles/app.css" />
     <script defer type="module" src="js/app.js"></script>
     <script defer src="https://kit.fontawesome.com/6aeb146ea7.js" crossorigin="anonymous"></script>
-    <style id="responsive-header"></style>
+    <style id="responsive-header-main"></style>
+    <style id="responsive-header-add"></style>
     <title>Main App</title>
 </head>
 
@@ -21,7 +22,7 @@
                 <button id="reset">RESET <i class="fas fa-sync-alt"></i></button>
             </div>
         </div>
-        <table class="dataTable">
+        <table class="dataTable" id="main-table">
         </table>
         <div id="pagination"></div>
         <div id="adminPanel">
@@ -49,7 +50,7 @@
                 <button id="addBtn">ADD <i class="fas fa-plus-square"></i></button>
                 <button id="commitAddBtn">COMMIT <i class="fas fa-cloud-upload-alt"></i></button>
             </div>
-            <table class="dataTable">
+            <table class="dataTable" id="add-table">
             </table>
         </div>
     </div>

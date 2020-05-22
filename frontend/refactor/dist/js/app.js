@@ -1,17 +1,17 @@
 import { AdminPanel } from "./adminPanel.js";
 import { DAO } from "./dataAccess.js";
-import { DataTable } from "./dataTable.js";
+import { MainTable } from "./mainTable.js";
 import { TopPanel } from "./topPanel.js";
+import { AddTable } from "./addTable.js";
 export { tableName };
-export { MyDAO };
-let tableName = "Patient";
-let MyDAO = new DAO(tableName);
-async function test() {
-    let data = await MyDAO.getData();
-    let dataTable = new DataTable(data);
-    // console.log(Helper.tableToJSON(DataTable.table, 2, 3));
-    TopPanel.setUp(dataTable);
-    TopPanel.setUpRunReset(dataTable);
-    AdminPanel.refresh();
+let tableName = "MedicalStaff";
+let MyDAO = new DAO(tableName, ["id"]);
+async function run() {
+    await MyDAO.fetchData();
+    TopPanel.setUp(MyDAO);
+    AdminPanel.setUp(MyDAO);
+    MainTable.display(MyDAO);
+    AddTable.display(MyDAO.table);
 }
-test();
+// MyDAO.fetchData("", "DELETE", [55]);
+run();
