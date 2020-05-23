@@ -1,7 +1,8 @@
 import { Helper } from "./helper.js";
 
 export class DAO {
-  static domain: string = "http://hms-api.atwebpages.com";
+  // static domain: string = "http://hms-api.atwebpages.com";
+  static domain: string = "https://cors-anywhere.herokuapp.com/http://hms-api.atwebpages.com";
   // static domain: string = "http://localhost:6969";
   // static domain: string = "http://172.22.156.171/~tidu/hms/backend";
   static database: string = "hms";
@@ -49,7 +50,10 @@ export class DAO {
 
     let opt: { method: string; headers: {}; body: string | undefined } = {
       method: method,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": "*"
+      },
       body: method === "GET" ? undefined : JSON.stringify(body),
     };
 

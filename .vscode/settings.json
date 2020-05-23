@@ -1,4 +1,10 @@
 {
     "liveServer.settings.port": 5501,
-    "liveServer.settings.root": "/docs"
+    "liveServer.settings.root": "/docs",
+    "liveServer.settings.https": {
+        "enable": true,
+        "cert": "",
+        "key": "",
+        "passphrase": ""
+    }
 }
