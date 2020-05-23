@@ -30,7 +30,10 @@ let DAO = /** @class */ (() => {
             let text_resp;
             let opt = {
                 method: method,
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Origin": "*"
+                },
                 body: method === "GET" ? undefined : JSON.stringify(body),
             };
             console.log(opt);
@@ -97,7 +100,8 @@ let DAO = /** @class */ (() => {
             // return [];
         }
     }
-    DAO.domain = "http://hms-api.atwebpages.com";
+    // static domain: string = "http://hms-api.atwebpages.com";
+    DAO.domain = "https://cors-anywhere.herokuapp.com/http://hms-api.atwebpages.com";
     // static domain: string = "http://localhost:6969";
     // static domain: string = "http://172.22.156.171/~tidu/hms/backend";
     DAO.database = "hms";
