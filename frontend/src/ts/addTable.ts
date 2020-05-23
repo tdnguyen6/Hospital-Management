@@ -13,6 +13,7 @@ export class AddTable {
   );
 
   static display(tableName: string) {
+    this.reset();
     this.headers = addController[`header${tableName}`];
     this.examples = addController[`example${tableName}`];
     this.displayHeaders();
@@ -68,6 +69,12 @@ export class AddTable {
       }
       Helper.fillOneRow(content, addingRow, "td");
     };
+  }
+
+  static reset() {
+    while (this.table.childElementCount > 0) {
+      this.table.children[0].remove();
+    }
   }
 }
 

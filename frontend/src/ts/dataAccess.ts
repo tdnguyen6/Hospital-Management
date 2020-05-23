@@ -1,8 +1,9 @@
 import { Helper } from "./helper.js";
 
 export class DAO {
-  // static domain: string = "http://hms-api.atwebpages.com";
-  static domain: string = "http://localhost:6969";
+  static domain: string = "http://hms-api.atwebpages.com";
+  // static domain: string = "http://localhost:6969";
+  // static domain: string = "http://172.22.156.171/~tidu/hms/backend";
   static database: string = "hms";
   keys: string[] = [];
   table: string;

@@ -12,7 +12,7 @@ use Slim\Routing\RouteContext;
 
 $app = AppFactory::create();
 
-// $app->setBasePath("/~tidu/hms");
+// $app->setBasePath("/~tidu/hms/backend");
 
 // Parse json, form data and xml
 $app->addBodyParsingMiddleware();

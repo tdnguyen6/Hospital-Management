@@ -2,6 +2,7 @@ import { Helper } from "./helper.js";
 let AddTable = /** @class */ (() => {
     class AddTable {
         static display(tableName) {
+            this.reset();
             this.headers = addController[`header${tableName}`];
             this.examples = addController[`example${tableName}`];
             this.displayHeaders();
@@ -49,6 +50,11 @@ let AddTable = /** @class */ (() => {
                 }
                 Helper.fillOneRow(content, addingRow, "td");
             };
+        }
+        static reset() {
+            while (this.table.childElementCount > 0) {
+                this.table.children[0].remove();
+            }
         }
     }
     AddTable.table = document.getElementById("add-table");

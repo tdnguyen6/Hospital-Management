@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-#app {
-  margin: 3rem 1rem;
-}
-
-#app * {
+* {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+#app {
+  margin: 3rem 1rem;
 }
 
 .display-none {
