@@ -1,7 +1,17 @@
+body {
+  margin: 0;
+}
+
 .top-menu {
   height: 70px;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.118) 0px 1px 3px 0px;
+}
+
+@media (max-width: 460px) {
+  .top-menu {
+    height: 120px;
+  }
 }
 
 nav .company-brand {
@@ -17,7 +27,7 @@ nav .company-brand:hover {
 .image {
   height: 100vh;
   min-height: 300px;
-  background-image: url("./resource/background.jpg");
+  background-image: url("../resource/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -34,7 +44,6 @@ section {
 }
 
 .not-menu {
-
 }
 
 .hospital-detail {
@@ -56,7 +65,7 @@ div .user-wrapper {
   border-radius: 20px;
   padding-left: 100px;
   padding-right: 70px;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .user-wrapper:hover {

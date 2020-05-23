@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      href="styles/css4.1/bootstrapcustom.min.css"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="styles/app-nav.css" />
@@ -25,31 +22,41 @@
     ></script>
     <style id="responsive-header-main"></style>
     <style id="responsive-header-add"></style>
-    <title>Hospital's <span class="role"></span></title>
+    <title>Hospital System</title>
   </head>
   <body>
-    <header class="top-menu">
-      <div class="h-100 container d-flex justify-content-between">
-        <a class="d-flex align-items-center user-name" href="index.html"
-          ><span class="role"></span></a
-        >
+    <div class="bootstrapiso">
+      <header class="top-menu pt-3 h-200">
+        <div class="container d-flex flex-wrap justify-content-between">
+          <a class="d-flex align-items-center user-name" href="index.html"
+            ><span class="role"></span
+          ></a>
 
-        <a class="d-flex align-items-center" href="#">Medical Service</a>
-        <a class="d-flex align-items-center" href="#">Medical Staff</a>
-        <a class="d-flex align-items-center" href="#">Medicine</a>
-        <a class="d-flex align-items-center" href="#">Patient</a>
-        <a class="d-flex align-items-center" href="#">Prescription</a>
-        <a class="d-flex align-items-center" href="#">Prescription Medicine</a>
-        <a class="d-flex align-items-center" href="#">Room</a>
-        <a class="d-flex align-items-center" href="#">Visit</a>
-        <a
-          class="d-flex align-items-center"
-          href="https://github.com/tidunguyen/Hospital-Management"
-          target="_blank"
-          ><i class="fab fa-github fa-3x"></i
-        ></a>
-      </div>
-    </header>
+          <a class="d-flex align-items-center tableName" href="#"
+            >Medical Service</a
+          >
+          <a class="d-flex align-items-center tableName" href="#"
+            >Medical Staff</a
+          >
+          <a class="d-flex align-items-center tableName" href="#">Medicine</a>
+          <a class="d-flex align-items-center tableName" href="#">Patient</a>
+          <a class="d-flex align-items-center tableName" href="#"
+            >Prescription</a
+          >
+          <a class="d-flex align-items-center tableName" href="#"
+            >Prescription Medicine</a
+          >
+          <a class="d-flex align-items-center tableName" href="#">Room</a>
+          <a class="d-flex align-items-center tableName" href="#">Visit</a>
+          <a
+            class="d-flex align-items-center"
+            href="https://github.com/tidunguyen/Hospital-Management"
+            target="_blank"
+            ><i class="fab fa-github fa-3x"></i
+          ></a>
+        </div>
+      </header>
+    </div>
 
     <div id="app">
       <div id="loading"></div>
@@ -66,7 +73,7 @@
       <table class="dataTable" id="main-table"></table>
       <div id="pagination"></div>
       <div id="adminPanel">
-        <hr />
+        <hr class="bg-dark" />
         <h1>
           Admin Panel
         </h1>

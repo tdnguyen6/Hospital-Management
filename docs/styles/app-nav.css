@@ -4,6 +4,26 @@
   box-shadow: rgba(0, 0, 0, 0.118) 0px 1px 3px 0px;
 }
 
+body {
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .top-menu {
+    height: 120px;
+  }
+
+  #app {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .top-menu {
+    height: 150px;
+  }
+}
+
 header .user-name {
   font-size: 30px;
   font-weight: bold;

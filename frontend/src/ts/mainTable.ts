@@ -289,8 +289,8 @@ export class MainTable {
   }
 
   static reset() {
-    for (let i = 0; i < MainTable.table.childElementCount; i++) {
-      this.table.children[i].remove();
+    while (MainTable.table.childElementCount > 0) {
+      this.table.children[0].remove();
     }
   }
 }

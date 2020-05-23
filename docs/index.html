@@ -1,131 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <script
-      defer
-      src="https://kit.fontawesome.com/6aeb146ea7.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" type="text/css" href="styles/index.css" />
-    <title>Welcome to our hospital!</title>
-  </head>
-  <body>
-    <nav class="top-menu navbar-light bg-light fixed-top">
-      <div class="my-3 pb-5 container d-flex justify-content-between">
-        <a class="h-100 d-flex align-items-center company-brand" href="#"
-          ><strong>TDQ</strong>Hospital</a
-        >
-        <a
-          class="d-flex align-items-center"
-          href="https://github.com/tidunguyen/Hospital-Management"
-          target="_blank"
-          ><em>Check out our repository </em> <i class="mx-3 fab fa-github fa-3x"></i
-        ></a>
-      </div>
-    </nav>
-
-    <!-- Full Page Image Header with Vertically Centered Content -->
-    <header class="image">
-      <div class="container h-100">
-        <div class="row h-100 align-items-center">
-          <div class="col-12 text-center">
-            <h1 class="welcome-title">WELCOME TO OUR HOSPITAL!</h1>
+  <div class="bootstrapiso">
+    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <link rel="stylesheet" href="styles/css4.1/bootstrapcustom.min.css">
+      
+      <script
+        defer
+        src="https://kit.fontawesome.com/6aeb146ea7.js"
+        crossorigin="anonymous"
+      ></script>
+      <link rel="stylesheet" type="text/css" href="styles/index.css" />
+      <title>Welcome to our hospital!</title>
+    </head>
+    <body>
+      <nav class="top-menu navbar-light bg-light fixed-top">
+        <div class="my-3 pb-5 container d-flex flex-wrap justify-content-between">
+          <a class="d-flex align-items-center company-brand" href="#"
+            ><strong>TDQ</strong>Hospital</a
+          >
+          <a
+            class="d-flex align-items-center"
+            href="https://github.com/tidunguyen/Hospital-Management"
+            target="_blank"
+            ><em>Check out our repository </em>
+            <i class="mx-3 fab fa-github fa-3x"></i
+          ></a>
+        </div>
+      </nav>
+  
+      <!-- Full Page Image Header with Vertically Centered Content -->
+      <header class="image">
+        <div class="container h-100">
+          <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+              <h1 class="welcome-title">WELCOME TO OUR HOSPITAL!</h1>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-
-    <section class="h-100 container not-menu">
-      <div>
-        <h2><strong>About</strong></h2>
-        <p class="hospital-detail">
-          TDQ Hospital is a multi-specialised healthcare facility located in Ho
-          Chi Minh City's new urban development.
-        </p>
-        <p>
-          Over two decades of tradition and excellence in providing high quality
-          medical care, and a skilled team of expert physicians, specialists and
-          nurses in caring for the thousands of patients we treat daily. Our
-          wide array of modern medical services continuously improves the health
-          of the community around us, all under a safe, standardized and
-          convenient environment.
-        </p>
-        <p>
-          At TDQ Hospital, the individual needs of our patients and their
-          families are our top priority. As a leading healthcare organization in
-          Vietnam, we aspire to be the healthcare destination of choice in HCMC
-          and be recognized for having the most satisfied patients, the best
-          possible clinical outcomes, and the most professional physicians,
-          specialists and staff.
-        </p>
-      </div>
-    </section>
-
-    <section class="h-100 container not-menu">
-      <h2><strong>Who are you?</strong></h2>
-      <div class="row my-2">
-        <a class="user col-md-6 my-3" href="app.html" onclick="sessionStorage.isAdmin='false'">
-          <div
-            class="h-100 py-5 user-wrapper border position-relative bg-light"
+      </header>
+  
+      <section class="h-100 container not-menu">
+        <div>
+          <h2><strong>About</strong></h2>
+          <p class="hospital-detail">
+            TDQ Hospital is a multi-specialised healthcare facility located in Ho
+            Chi Minh City's new urban development.
+          </p>
+          <p>
+            Over two decades of tradition and excellence in providing high quality
+            medical care, and a skilled team of expert physicians, specialists and
+            nurses in caring for the thousands of patients we treat daily. Our
+            wide array of modern medical services continuously improves the health
+            of the community around us, all under a safe, standardized and
+            convenient environment.
+          </p>
+          <p>
+            At TDQ Hospital, the individual needs of our patients and their
+            families are our top priority. As a leading healthcare organization in
+            Vietnam, we aspire to be the healthcare destination of choice in HCMC
+            and be recognized for having the most satisfied patients, the best
+            possible clinical outcomes, and the most professional physicians,
+            specialists and staff.
+          </p>
+        </div>
+      </section>
+  
+      <section class="h-100 container not-menu">
+        <h2><strong>Who are you?</strong></h2>
+        <div class="row my-2">
+          <a
+            class="user col-md-6 my-3"
+            href="app.html"
+            onclick="sessionStorage.isAdmin='false';sessionStorage.user='Patient'"
           >
-            <h1 class="user-title position-relative">
-              Hospital's <span class="user-name">Patient</span>
-            </h1>
-            <!-- <p class="user-detail"> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-              ullamco laboris nisi ut aliquip ex ea commodo consequat. </p> -->
-          </div>
-        </a>
-
-        <a class="user col-md-6 my-3" href="app.html" onclick="sessionStorage.isAdmin='true'">
-          <div
-            class="h-100 py-5 user-wrapper border position-relative bg-light"
+            <div
+              class="h-100 py-5 user-wrapper border position-relative bg-light"
+            >
+              <h1 class="user-title position-relative">
+                Hospital's <span class="user-name">Patient</span>
+              </h1>
+              <!-- <p class="user-detail"> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. </p> -->
+            </div>
+          </a>
+  
+          <a
+            class="user col-md-6 my-3"
+            href="app.html"
+            onclick="sessionStorage.isAdmin='true';sessionStorage.user='Staff'"
           >
-            <h1 class="user-title position-relative">
-              Hospital's <span class="user-name">Staff</span>
-            </h1>
-            <!-- <p class="user-detail"> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-              ullamco laboris nisi ut aliquip ex ea commodo consequat. </p> -->
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section></section>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+            <div
+              class="h-100 py-5 user-wrapper border position-relative bg-light"
+            >
+              <h1 class="user-title position-relative">
+                Hospital's <span class="user-name">Staff</span>
+              </h1>
+              <!-- <p class="user-detail"> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. </p> -->
+            </div>
+          </a>
+        </div>
+      </section>
+  
+      <section></section>
+    </body>
+  </div>
 </html>

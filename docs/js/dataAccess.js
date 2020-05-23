@@ -97,8 +97,8 @@ let DAO = /** @class */ (() => {
             // return [];
         }
     }
-    DAO.domain = "http://hms-api.atwebpages.com";
-    // static domain: string = "http://localhost:6969";
+    // static domain: string = "http://hms-api.atwebpages.com";
+    DAO.domain = "http://localhost:6969";
     DAO.database = "hms";
     return DAO;
 })();

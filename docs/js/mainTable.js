@@ -228,8 +228,8 @@ let MainTable = /** @class */ (() => {
             styleSheet.insertRule(rule);
         }
         static reset() {
-            for (let i = 0; i < MainTable.table.childElementCount; i++) {
-                MainTable.table.children[i].remove();
+            while (MainTable.table.childElementCount > 0) {
+                this.table.children[0].remove();
             }
         }
     }
