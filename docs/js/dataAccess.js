@@ -46,7 +46,7 @@ let DAO = /** @class */ (() => {
             catch (err) {
                 console.log(text_resp);
                 console.log(err);
-                alert(err);
+                // alert(err);
             }
             finally {
                 Helper.stopLoading(InvisibleStack);
@@ -101,7 +101,8 @@ let DAO = /** @class */ (() => {
         }
     }
     // static domain: string = "http://hms-api.atwebpages.com";
-    DAO.domain = "https://cors-anywhere.herokuapp.com/http://hms-api.atwebpages.com";
+    // DAO.domain = "https://cors-anywhere.herokuapp.com/http://hms-api.atwebpages.com";
+    DAO.domain = "http://localhost:9999";
     // static domain: string = "http://localhost:6969";
     // static domain: string = "http://172.22.156.171/~tidu/hms/backend";
     DAO.database = "hms";

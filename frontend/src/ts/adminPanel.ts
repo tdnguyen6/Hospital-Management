@@ -82,7 +82,7 @@ export class AdminPanel {
       }
     };
     this.commitEditBtn.onclick = () => {
-      if (this.dao.getSavedIDs().length <= 0) alert("No deleted IDs found!");
+      if (this.dao.getSavedIDs().length <= 0) alert("No edited IDs found!");
       else {
         let ok: boolean = confirm(
           `Are you sure you want to edit these ids: ${Helper.ObjArrToString(

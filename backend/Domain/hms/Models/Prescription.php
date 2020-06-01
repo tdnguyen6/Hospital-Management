@@ -178,4 +178,8 @@ class Prescription
         }
         return false;
     }
+
+    public static function getKeys() {
+        return ["id"];
+    }
 }

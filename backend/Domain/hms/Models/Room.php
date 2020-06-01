@@ -190,4 +190,8 @@ class Room
         }
         return false;
     }
+
+    public static function getKeys() {
+        return ["number", "type"];
+    }
 }

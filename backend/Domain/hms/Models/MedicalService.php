@@ -241,4 +241,8 @@ class MedicalService
         }
         return false;
     }
+
+    public static function getKeys() {
+        return ["id"];
+    }
 }

@@ -134,6 +134,4 @@ class Patient extends Person
         }
         return false;
     }
-
-
 }

@@ -12,18 +12,50 @@ return function (Request $request, Response $response, string $database, string 
     $newObjs = $request->getParsedBody();
     $data = [];
     $failed = 0;
+    $keys = $table::getKeys();
     foreach ($newObjs as $newObjFields) {
-        $obj = $entityManager->find("$table", $newObjFields['id']);
-        if (!$newObjFields['id'] || !$obj) {
+        $notEnoughKeys = false;
+        foreach ($keys as $key) {
+            if (!$newObjFields[$key]) {
+                $notEnoughKeys = true;
+                break;
+            }
+        }
+
+        if ($notEnoughKeys) {
             $failed += 1;
             continue;
         }
-        unset($newObjFields['id']);
+
+        $obj = $entityManager->find("$table", array_slice($newObjFields, 0, count($keys)));
+
+        if (!$obj) {
+            $failed += 1;
+            continue;
+        }
+
+        $notEnoughField1 = false;
+        $notEnoughField2 = false;
+
         if (!$table::validate($newObjFields)) {
+            $notEnoughField1 = true;
+        }
+
+        foreach ($keys as $key) {
+            unset($newObjFields[$key]);
+        }
+
+        if (!$table::validate($newObjFields)) {
+            $notEnoughField2 = true;
+        }
+
+        if ($notEnoughField1 && $notEnoughField2) {
             $failed += 1;
             continue;
         }
+
         $obj->setEntityManager($entityManager);
+
         foreach ($newObjFields as $newObjKey => $newObjFieldValue) {
             $setter = "set". ucfirst($newObjKey);
             $obj->$setter($newObjFieldValue);

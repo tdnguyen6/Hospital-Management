@@ -133,4 +133,11 @@ class PrescriptionMedicine
         }
         return false;
     }
+
+    public static function getKeys() {
+        return [
+            "medicine",
+            "prescription"
+        ];
+    }
 }

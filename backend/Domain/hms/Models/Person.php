@@ -181,4 +181,8 @@ class Person
             "phone" => $this->getPhone()
         ];
     }
+
+    public static function getKeys() {
+        return ["id"];
+    }
 }

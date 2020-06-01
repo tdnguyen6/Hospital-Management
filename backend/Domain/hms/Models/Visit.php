@@ -290,4 +290,8 @@ class Visit
         }
         return false;
     }
+
+    public static function getKeys() {
+        return ["id"];
+    }
 }

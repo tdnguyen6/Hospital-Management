@@ -12,18 +12,33 @@ return function (Request $request, Response $response, string $database, string 
     $newObjs = $request->getParsedBody();
     $data = [];
     $failed = 0;
+    $keys = $table::getKeys();
     foreach ($newObjs as $newObjFields) {
-        if ($table == "Room" || $table == "PrescriptionMedicine") {
-            $obj = $entityManager->find("$table", array_slice($newObjFields, 0, 2));
-        } else {
-            $obj = $entityManager->find("$table", array_slice($newObjFields, 0, 1));
+        $notEnoughKeys = false;
+        foreach ($keys as $key) {
+            if (!$newObjFields[$key]) {
+                $notEnoughKeys = true;
+                break;
+            }
         }
-        if (!$newObjFields['id'] || !$obj) {
+
+        if ($notEnoughKeys) {
             $failed += 1;
             continue;
         }
-        unset($newObjFields['id']);
+
+        $obj = $entityManager->find("$table", array_slice($newObjFields, 0, count($keys)));
+
+        if (!$obj) {
+            $failed += 1;
+            continue;
+        }
+        foreach ($keys as $key) {
+            unset($newObjFields[$key]);
+        }
+
         $obj->setEntityManager($entityManager);
+
         foreach ($newObjFields as $newObjKey => $newObjFieldValue) {
             $setter = "set". ucfirst($newObjKey);
             $obj->$setter($newObjFieldValue);

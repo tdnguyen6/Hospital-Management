@@ -200,4 +200,8 @@ class Medicine
         }
         return false;
     }
+
+    public static function getKeys() {
+        return ["id"];
+    }
 }
