@@ -9,7 +9,7 @@ use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
 
 // return function (string $databaseName, string $databaseType = 'mysql', string $host = 'fdb26.awardspace.net', string $port = '3306', string $uname = '3431215_hms', string $passwd = 'hmsapi2020') : EntityManager
-return function (string $databaseName, string $databaseType = 'sqlite', string $host = '172.22.144.1', string $port = '1433', string $uname = 'sa', string $passwd = 'sa') : EntityManager
+return function (string $databaseName, string $databaseType = 'mysql', string $host = '172.22.144.1', string $port = '1433', string $uname = 'sa', string $passwd = 'sa') : EntityManager
 {
     $isDevMode = true;
     $proxyDir = null;
